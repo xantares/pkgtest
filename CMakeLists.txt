@@ -10,11 +10,21 @@ find_package ( LAPACK )
 find_package ( TBB )
 find_package ( LibSVM )
 
+
+
 enable_testing ()
+
+if ( MINGW )
+  file (GLOB DLLS "${CMAKE_FIND_ROOT_PATH}/*/*.dll")
+  foreach( DLL ${DLLS})
+    execute_process(COMMAND ${CMAKE_COMMAND} -E copy ${DLL} ${CMAKE_CURRENT_BINARY_DIR})
+  endforeach()
+endif ()
 
 if ( LAPACK_FOUND )
   include_directories ( ${LAPACK_INCLUDE_DIRS} )
   add_executable ( t_lapack t_lapack.f90 )
+  add_dependencies(t_lapack eeee)
   target_link_libraries ( t_lapack ${LAPACK_LIBRARIES} )
   add_test( t_lapack t_lapack${CMAKE_EXECUTABLE_SUFFIX} )
 endif ()
@@ -39,4 +49,5 @@ if ( TBB_FOUND )
   target_link_libraries ( t_tbb ${TBB_LIBRARIES} )
   add_test( t_tbb t_tbb${CMAKE_EXECUTABLE_SUFFIX} )
 endif ()
+
 
