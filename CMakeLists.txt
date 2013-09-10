@@ -4,11 +4,27 @@ project ( mingw-test C CXX Fortran )
 
 list ( APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake )
 
-find_package ( LibXml2 )
-find_package ( BLAS )
-find_package ( LAPACK )
-find_package ( TBB )
-find_package ( LibSVM )
+option (USE_TBB ON)
+option (USE_LIBXML2 ON)
+option (USE_LAPACK ON)
+option (USE_LIBSVM ON)
+
+if (USE_LIBXML2)
+  find_package ( LibXml2 )
+endif ()
+
+if (USE_LAPACK)
+  find_package ( BLAS )
+  find_package ( LAPACK )
+endif ()
+
+if (USE_TBB)
+  find_package ( TBB )
+endif ()
+
+if (USE_LIBSVM)
+  find_package ( LibSVM )
+endif ()
 
 
 
