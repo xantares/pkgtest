@@ -4,31 +4,44 @@ project ( mingw-test C CXX Fortran )
 
 list ( APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake )
 
-option (USE_TBB "tbb" ON)
-option (USE_LIBXML2 "libxml2" ON)
-option (USE_LAPACK "lapack" ON)
-option (USE_LIBSVM "libsvm" ON)
+enable_testing ()
 
+option (USE_LIBXML2 "libxml2" ON)
 if (USE_LIBXML2)
   find_package ( LibXml2 )
 endif ()
 
+option (USE_LAPACK "lapack" ON)
 if (USE_LAPACK)
   find_package ( BLAS )
   find_package ( LAPACK )
 endif ()
 
+option (USE_TBB "tbb" ON)
 if (USE_TBB)
   find_package ( TBB )
 endif ()
 
+option (USE_LIBSVM "libsvm" ON)
 if (USE_LIBSVM)
   find_package ( LibSVM )
 endif ()
 
+option (USE_LIBUSB "libusb" ON)
+if (USE_LIBUSB)
+  find_package ( LibUSB )
+endif ()
 
+option (USE_LIBFTDI1 "libFTDI1" ON)
+if (USE_LIBFTDI1)
+  find_package ( LibFTDI1 NO_MODULE )
+endif ()
 
-enable_testing ()
+option (USE_ZLIB "zlib" ON)
+if (USE_ZLIB)
+  find_package ( ZLIB )
+endif ()
+
 
 if ( MINGW )
   file (GLOB DLLS "${CMAKE_FIND_ROOT_PATH}/*/*.dll")
@@ -66,4 +79,23 @@ if ( TBB_FOUND )
   add_test( t_tbb t_tbb${CMAKE_EXECUTABLE_SUFFIX} )
 endif ()
 
+if ( LIBUSB_FOUND )
+  include_directories ( ${LIBUSB_INCLUDE_DIR} )
+  add_executable ( t_libusb t_libusb.c )
+  target_link_libraries ( t_libusb ${LIBUSB_LIBRARIES} )
+  add_test( t_libusb t_libusb${CMAKE_EXECUTABLE_SUFFIX} )
+endif ()
 
+if ( LIBFTDI1_FOUND )
+  include_directories ( ${LIBFTDI1_INCLUDE_DIRS} )
+  add_executable ( t_libftdi1 t_libftdi1.c )
+  target_link_libraries ( t_libftdi1 ${LIBFTDI1_LIBRARIES} )
+  add_test( t_libftdi1 t_libftdi1${CMAKE_EXECUTABLE_SUFFIX} )
+endif ()
+
+if ( ZLIB_FOUND )
+  include_directories ( ${ZLIB_INCLUDE_DIRS} )
+  add_executable ( t_zlib t_zlib.c )
+  target_link_libraries ( t_zlib ${ZLIB_LIBRARIES} )
+  add_test( t_zlib t_zlib${CMAKE_EXECUTABLE_SUFFIX} )
+endif ()
