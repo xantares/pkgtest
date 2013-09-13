@@ -6,6 +6,20 @@ list ( APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake )
 
 enable_testing ()
 
+
+option (USE_CONFUSE "confuse" ON)
+if (USE_CONFUSE)
+  find_package ( Confuse )
+endif ()
+if ( CONFUSE_FOUND )
+  include_directories ( ${CONFUSE_INCLUDE_DIRS} )
+  add_executable ( t_confuse t_confuse.c )
+  target_link_libraries ( t_confuse ${CONFUSE_LIBRARIES} )
+  install (TARGETS t_confuse DESTINATION bin)
+  add_test( t_confuse t_confuse${CMAKE_EXECUTABLE_SUFFIX} )
+endif ()
+
+
 option (USE_LIBXML2 "libxml2" ON)
 if (USE_LIBXML2)
   find_package ( LibXml2 )
