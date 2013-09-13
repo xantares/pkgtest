@@ -54,6 +54,23 @@ if ( MINGW )
   endforeach()
 endif ()
 
+
+
+option (USE_LIBDL "libdl" ON)
+if (USE_LIBDL)
+  find_package ( Libdl )
+endif ()
+if ( LIBDL_FOUND )
+  add_definitions(-DCURRENT_BINARY_DIR="${CMAKE_CURRENT_BINARY_DIR}")
+  add_library(hello SHARED hello.c)
+  include_directories ( ${LIBDL_INCLUDE_DIR} )
+  add_executable ( t_libdl t_libdl.c )
+  target_link_libraries ( t_libdl ${LIBDL_LIBRARIES} )
+  install (TARGETS t_libdl DESTINATION bin)
+  add_test( t_libdl t_libdl${CMAKE_EXECUTABLE_SUFFIX} )
+endif ()
+
+
 if ( LAPACK_FOUND )
   include_directories ( ${LAPACK_INCLUDE_DIRS} )
   add_executable ( t_lapack t_lapack.f90 )
