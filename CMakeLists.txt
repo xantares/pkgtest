@@ -148,3 +148,13 @@ if ( TBB_FOUND )
   add_pkgtest ( tbb EXT .cxx INCLUDES ${TBB_INCLUDE_DIRS} LIBS ${TBB_LIBRARIES})
 endif ()
 
+
+option (USE_QT4 "qt4" ON)
+if (USE_QT4)
+  find_package ( Qt4 REQUIRED QtCore QtGui)
+endif ()
+
+if ( QT4_FOUND )
+  include ( ${QT_USE_FILE} )
+  add_pkgtest ( qt4 EXT .cxx LIBS ${QT_LIBRARIES})
+endif ()
