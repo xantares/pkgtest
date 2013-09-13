@@ -119,6 +119,20 @@ if ( NLOPT_FOUND )
   add_test( t_nlopt t_nlopt${CMAKE_EXECUTABLE_SUFFIX} )
 endif ()
 
+
+option (USE_REGEX "regex" ON)
+if (USE_REGEX)
+  find_package ( Regex )
+endif ()
+if ( REGEX_FOUND )
+  include_directories ( ${REGEX_INCLUDE_DIR} )
+  add_executable ( t_regex t_regex.c )
+  target_link_libraries ( t_regex ${REGEX_LIBRARIES} )
+  install (TARGETS t_regex DESTINATION bin)
+  add_test( t_regex t_regex${CMAKE_EXECUTABLE_SUFFIX} )
+endif ()
+
+
 if ( TBB_FOUND )
   include_directories ( ${TBB_INCLUDE_DIRS} )
   add_executable ( t_tbb t_tbb.cxx )
