@@ -39,6 +39,14 @@ macro ( add_pkgtest PKGNAME )
 endmacro()
 
 
+if ( MINGW )
+  file (GLOB DLLS "${CMAKE_FIND_ROOT_PATH}/*/*.dll")
+  foreach( DLL ${DLLS})
+    execute_process(COMMAND ${CMAKE_COMMAND} -E copy ${DLL} ${CMAKE_CURRENT_BINARY_DIR})
+  endforeach()
+endif ()
+
+
 option (USE_CONFUSE "confuse" ON)
 if (USE_CONFUSE)
   find_package ( Confuse )
@@ -48,11 +56,12 @@ if ( CONFUSE_FOUND )
 endif ()
 
 
-if ( MINGW )
-  file (GLOB DLLS "${CMAKE_FIND_ROOT_PATH}/*/*.dll")
-  foreach( DLL ${DLLS})
-    execute_process(COMMAND ${CMAKE_COMMAND} -E copy ${DLL} ${CMAKE_CURRENT_BINARY_DIR})
-  endforeach()
+option (USE_FFTW "fftw" ON)
+if (USE_FFTW)
+  find_package ( FFTW )
+endif ()
+if ( FFTW_FOUND )
+  add_pkgtest ( fftw INCLUDES ${FFTW_INCLUDE_DIRS} LIBS ${FFTW_LIBRARIES})
 endif ()
 
 
