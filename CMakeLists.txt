@@ -175,3 +175,13 @@ if ( QSCINTILLA_FOUND )
   include ( ${QT_USE_FILE} )
   add_pkgtest ( qscintilla EXT .cxx INCLUDES ${QSCINTILLA_INCLUDE_DIRS} LIBS ${QT_LIBRARIES};${QSCINTILLA_LIBRARIES})
 endif ()
+
+option (USE_QWT "qwt" ON)
+if (USE_QWT)
+  find_package ( Qwt )
+endif ()
+if ( QWT_FOUND )
+  include ( ${QT_USE_FILE} )
+  add_pkgtest ( qwt EXT .cxx INCLUDES ${QWT_INCLUDE_DIRS} LIBS ${QT_LIBRARIES};${QWT_LIBRARIES})
+endif ()
+

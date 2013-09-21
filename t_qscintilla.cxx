@@ -12,9 +12,6 @@ public:
     QsciScintilla * textEdit = new QsciScintilla;
     textEdit->setText("Hello world!");
     setCentralWidget(textEdit);
-
-//     QPushButton *hello = new QPushButton( "Hello world!", 0 );
-//     hello->resize( 100, 30 );
     setCentralWidget( textEdit );
   }
 };
