@@ -2,6 +2,7 @@
 #include "QtGui/qpushbutton.h"
 #include "QtGui/qmainwindow.h"
 #include "QtCore/qtimer.h"
+#include <iostream>
 
 class ExampleWindow : public QMainWindow
 {
@@ -22,5 +23,10 @@ int main( int argc, char **argv )
   ExampleWindow mainWin;
   mainWin.show();
   int exec = app.exec();
+  
+  // test iconv
+  QString src("\xc3\xa9");
+  std::cout << "src=["<<src.toStdString() <<"] rsrc=["<<QString::fromLocal8Bit(src.toStdString().c_str()).toLocal8Bit().constData()<<"]"<< std::endl;
+
   return exec;
 }
