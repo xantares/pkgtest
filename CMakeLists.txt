@@ -196,3 +196,14 @@ if ( QSINT_FOUND )
   include ( ${QT_USE_FILE} )
   add_pkgtest ( qsint EXT .cxx INCLUDES ${QSINT_INCLUDE_DIRS} LIBS ${QT_LIBRARIES};${QSINT_LIBRARIES})
 endif ()
+
+
+option (USE_BOOST "boost" ON)
+if (USE_BOOST)
+  find_package ( Boost )
+endif ()
+if ( Boost_FOUND )
+  add_pkgtest ( boost EXT .cxx INCLUDES ${Boost_INCLUDE_DIRS} LIBS ${Boost_LIBRARIES})
+endif ()
+
+
