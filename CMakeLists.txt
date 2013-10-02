@@ -148,6 +148,13 @@ if ( ZLIB_FOUND )
   add_pkgtest ( zlib  INCLUDES ${ZLIB_INCLUDE_DIRS} LIBS ${ZLIB_LIBRARIES})
 endif ()
 
+option(USE_LIBZIP "libzip" on)
+if (USE_LIBZIP)
+  find_package(LibZip)
+endif ()
+if (LIBZIP_FOUND)
+  add_pkgtest(libzip INCLUDES ${LIBZIP_INCLUDE_DIRS} LIBS ${LIBZIP_LIBRARIES})
+endif()
 
 option (USE_TBB "tbb" ON)
 if (USE_TBB)
