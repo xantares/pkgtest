@@ -64,6 +64,13 @@ if ( FFTW_FOUND )
   add_pkgtest ( fftw INCLUDES ${FFTW_INCLUDE_DIRS} LIBS ${FFTW_LIBRARIES})
 endif ()
 
+option (USE_ICONV "iconv" ON)
+if (USE_ICONV)
+  find_package ( Iconv )
+endif ()
+if ( ICONV_FOUND )
+  add_pkgtest ( iconv INCLUDES ${ICONV_INCLUDE_DIR} LIBS ${ICONV_LIBRARIES})
+endif ()
 
 option (USE_LIBDL "libdl" ON)
 if (USE_LIBDL)
