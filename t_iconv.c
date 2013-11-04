@@ -18,4 +18,5 @@ int main(int argc, char *argv[])
   iconv_close(conv);
 
   fprintf(stderr,"out: %s\n",dst);
+  return 0;
 }
