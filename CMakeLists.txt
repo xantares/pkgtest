@@ -39,14 +39,6 @@ macro ( add_pkgtest PKGNAME )
 endmacro()
 
 
-if ( MINGW )
-  file (GLOB DLLS "${CMAKE_FIND_ROOT_PATH}/*/*.dll")
-  foreach( DLL ${DLLS})
-    execute_process(COMMAND ${CMAKE_COMMAND} -E copy ${DLL} ${CMAKE_CURRENT_BINARY_DIR})
-  endforeach()
-endif ()
-
-
 option (USE_CONFUSE "confuse" ON)
 if (USE_CONFUSE)
   find_package ( Confuse )
