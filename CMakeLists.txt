@@ -65,16 +65,15 @@ if ( FFTW_FOUND )
   add_pkgtest ( fftw INCLUDES ${FFTW_INCLUDE_DIRS} LIBS ${FFTW_LIBRARIES})
 endif ()
 
-option (USE_FREETYPE "freeetype" ON)
+
+option (USE_FREETYPE "freetype" ON)
 if (USE_FREETYPE)
   find_package ( Freetype )
 endif ()
 if ( FREETYPE_FOUND )
-#   if (UNIX)
-#     list (APPEND FREETYPE_LIBRARIES m)
-#   endif ()
   add_pkgtest ( freetype EXT .cxx INCLUDES ${FREETYPE_INCLUDE_DIRS} LIBS ${FREETYPE_LIBRARIES})
 endif ()
+
 
 option (USE_ICONV "iconv" ON)
 if (USE_ICONV)
@@ -83,6 +82,7 @@ endif ()
 if ( ICONV_FOUND )
   add_pkgtest ( iconv INCLUDES ${ICONV_INCLUDE_DIR} LIBS ${ICONV_LIBRARIES})
 endif ()
+
 
 option (USE_LIBDL "libdl" ON)
 if (USE_LIBDL)
