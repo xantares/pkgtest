@@ -157,6 +157,15 @@ if ( NLOPT_FOUND )
 endif ()
 
 
+option (USE_OPENSSL "openssl" ON)
+if (USE_OPENSSL)
+  find_package ( OpenSSL )
+endif ()
+if ( OPENSSL_FOUND )
+  add_pkgtest ( openssl INCLUDES ${OPENSSL_INCLUDE_DIRS} LIBS ${OPENSSL_LIBRARIES})
+endif ()
+
+
 option (USE_REGEX "regex" ON)
 if (USE_REGEX)
   find_package ( Regex )
