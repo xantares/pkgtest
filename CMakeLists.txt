@@ -48,6 +48,15 @@ if ( BULLET_FOUND )
 endif ()
 
 
+option (USE_BOX2D "box2d" ON)
+if (USE_BOX2D)
+  find_package ( Box2D )
+endif ()
+if ( BOX2D_FOUND )
+  add_pkgtest ( box2d EXT .cxx INCLUDES ${BOX2D_INCLUDE_DIR} LIBS ${BOX2D_LIBRARY})
+endif ()
+
+
 option (USE_CONFUSE "confuse" ON)
 if (USE_CONFUSE)
   find_package ( Confuse )
@@ -72,6 +81,15 @@ if (USE_FREETYPE)
 endif ()
 if ( FREETYPE_FOUND )
   add_pkgtest ( freetype EXT .cxx INCLUDES ${FREETYPE_INCLUDE_DIRS} LIBS ${FREETYPE_LIBRARIES})
+endif ()
+
+
+option (USE_HDF5 "hdf5" ON)
+if (USE_HDF5)
+  find_package ( HDF5 )
+endif ()
+if ( HDF5_FOUND )
+  add_pkgtest ( hdf5 INCLUDES ${HDF5_INCLUDE_DIRS} LIBS ${HDF5_LIBRARIES})
 endif ()
 
 
