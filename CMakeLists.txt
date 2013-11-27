@@ -2,6 +2,8 @@ cmake_minimum_required ( VERSION 2.8 )
 
 project ( mingw-test C CXX Fortran )
 
+option(FORCE_WINE "force testing through wine" OFF)
+
 list ( APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake )
 
 enable_testing ()
@@ -35,7 +37,12 @@ macro ( add_pkgtest PKGNAME )
   target_link_libraries ( t_${PKGNAME} ${_LIBS} )
 
   install (TARGETS t_${PKGNAME} DESTINATION bin)
-  add_test ( t_${PKGNAME} t_${PKGNAME}${CMAKE_EXECUTABLE_SUFFIX} )
+  
+  set (COMMAND "t_${PKGNAME}${CMAKE_EXECUTABLE_SUFFIX}")
+  if (FORCE_WINE)
+    set (COMMAND "wine" "${COMMAND}")
+  endif ()
+  add_test ( t_${PKGNAME} ${COMMAND} )
 endmacro()
 
 
