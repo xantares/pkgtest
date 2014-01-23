@@ -35,9 +35,7 @@ macro ( add_pkgtest PKGNAME )
   target_include_directories( t_${PKGNAME} PUBLIC ${_INCLUDES})
 
   install (TARGETS t_${PKGNAME} DESTINATION bin)
-  
-  set (COMMAND "t_${PKGNAME}${CMAKE_EXECUTABLE_SUFFIX}")
-  add_test ( t_${PKGNAME} ${COMMAND} )
+  add_test ( t_${PKGNAME} t_${PKGNAME}${CMAKE_EXECUTABLE_SUFFIX} )
 endmacro()
 
 
