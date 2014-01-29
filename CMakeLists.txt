@@ -128,6 +128,18 @@ if ( ICONV_FOUND )
 endif ()
 
 
+option (USE_JPEG "jpeg" ON)
+if (USE_JPEG)
+  find_package ( JPEG )
+endif ()
+if ( JPEG_FOUND )
+  if (NOT ${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_BINARY_DIR})
+    execute_process( COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_SOURCE_DIR}/test.jpg ${CMAKE_CURRENT_BINARY_DIR}/test.jpg )
+  endif ()
+  add_pkgtest ( jpeg INCLUDES ${JPEG_INCLUDE_DIRS} LIBS ${JPEG_LIBRARIES})
+endif ()
+
+
 option (USE_LIBDL "libdl" ON)
 if (USE_LIBDL)
   find_package ( Libdl )
