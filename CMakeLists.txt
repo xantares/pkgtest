@@ -66,6 +66,15 @@ if ( CONFUSE_FOUND )
 endif ()
 
 
+option (USE_EIGEN "eigen" ON)
+if (USE_EIGEN)
+  find_package ( Eigen )
+endif ()
+if ( EIGEN_FOUND )
+  add_pkgtest ( eigen EXT .cxx INCLUDES ${EIGEN_INCLUDE_DIRS} )
+endif ()
+
+
 option (USE_FFTW "fftw" ON)
 if (USE_FFTW)
   find_package ( FFTW )
