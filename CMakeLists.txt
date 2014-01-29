@@ -75,6 +75,15 @@ if ( EIGEN_FOUND )
 endif ()
 
 
+option (USE_EXPAT "expat" ON)
+if (USE_EXPAT)
+  find_package ( EXPAT )
+endif ()
+if ( EXPAT_FOUND )
+  add_pkgtest ( expat INCLUDES ${EXPAT_INCLUDE_DIRS} LIBS ${EXPAT_LIBRARIES})
+endif ()
+
+
 option (USE_FFTW "fftw" ON)
 if (USE_FFTW)
   find_package ( FFTW )
