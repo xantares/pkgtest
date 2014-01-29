@@ -264,13 +264,16 @@ if ( Boost_FOUND )
   add_pkgtest ( boost EXT .cxx INCLUDES ${Boost_INCLUDE_DIRS} LIBS ${Boost_LIBRARIES})
 endif ()
 
+
+
 option (USE_QT4 "qt4" ON)
 if (USE_QT4)
   find_package ( Qt4 REQUIRED QtCore QtGui)
 endif ()
 if ( QT4_FOUND )
-  include ( ${QT_USE_FILE} )
-  add_pkgtest ( qt4 EXT .cxx LIBS ${QT_LIBRARIES})
+  set (QT_LIBRARIES ${QT_QTGUI_LIBRARY};${QT_QTCORE_LIBRARY})
+  set (QT_INCLUDE_DIRS ${QT_INCLUDE_DIR};${QT_QTGUI_INCLUDE_DIR};${QT_QTCORE_INCLUDE_DIR})
+  add_pkgtest ( qt4 EXT .cxx INCLUDES ${QT_INCLUDE_DIRS} LIBS ${QT_LIBRARIES})
 endif ()
 
 
@@ -279,7 +282,7 @@ if (USE_QSCINTILLA)
   find_package ( QScintilla )
 endif ()
 if ( QSCINTILLA_FOUND AND QT4_FOUND)
-  add_pkgtest ( qscintilla EXT .cxx INCLUDES ${QSCINTILLA_INCLUDE_DIRS} LIBS ${QT_LIBRARIES};${QSCINTILLA_LIBRARIES})
+  add_pkgtest ( qscintilla EXT .cxx INCLUDES ${QT_INCLUDE_DIRS};${QSCINTILLA_INCLUDE_DIRS} LIBS ${QT_LIBRARIES};${QSCINTILLA_LIBRARIES})
 endif ()
 
 
@@ -288,7 +291,7 @@ if (USE_QWT)
   find_package ( Qwt )
 endif ()
 if ( QWT_FOUND AND QT4_FOUND)
-  add_pkgtest ( qwt EXT .cxx INCLUDES ${QWT_INCLUDE_DIRS} LIBS ${QT_LIBRARIES};${QWT_LIBRARIES})
+  add_pkgtest ( qwt EXT .cxx INCLUDES ${QT_INCLUDE_DIRS};${QWT_INCLUDE_DIRS} LIBS ${QT_LIBRARIES};${QWT_LIBRARIES})
 endif ()
 
 
@@ -297,6 +300,16 @@ if (USE_QSINT)
   find_package ( QSint )
 endif ()
 if ( QSINT_FOUND AND QT4_FOUND)
-  add_pkgtest ( qsint EXT .cxx INCLUDES ${QSINT_INCLUDE_DIRS} LIBS ${QT_LIBRARIES};${QSINT_LIBRARIES})
+  add_pkgtest ( qsint EXT .cxx INCLUDES ${QT_INCLUDE_DIRS};${QSINT_INCLUDE_DIRS} LIBS ${QT_LIBRARIES};${QSINT_LIBRARIES})
 endif ()
+
+
+option (USE_QT5 "qt5" ON)
+if (USE_QT5)
+  find_package ( Qt5Widgets )
+endif ()
+if ( Qt5Widgets_FOUND )
+  add_pkgtest ( qt5 EXT .cxx INCLUDES ${Qt5Widgets_INCLUDE_DIRS} LIBS ${Qt5Widgets_LIBRARIES} )
+endif ()
+
 

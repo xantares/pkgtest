@@ -69,5 +69,6 @@ main(int argc, char **argv) {
     if (done)
       break;
   }
+  return 0;
 }  /* End of main */
 
