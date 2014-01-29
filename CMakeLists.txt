@@ -39,6 +39,14 @@ macro ( add_pkgtest PKGNAME )
 endmacro()
 
 
+option (USE_BLAS "blas" ON)
+if (USE_BLAS)
+  find_package ( BLAS )
+endif ()
+if ( BLAS_FOUND )
+  add_pkgtest ( blas EXT .f90 LIBS ${BLAS_LIBRARIES})
+endif ()
+
 option (USE_BULLET "bullet" ON)
 if (USE_BULLET)
   find_package ( Bullet )
@@ -137,7 +145,7 @@ if (USE_LAPACK)
   find_package ( LAPACK )
 endif ()
 if ( LAPACK_FOUND )
-  add_pkgtest ( lapack EXT .f90 INCLUDES ${LAPACK_INCLUDE_DIRS} LIBS ${LAPACK_LIBRARIES})
+  add_pkgtest ( lapack EXT .f90 LIBS ${LAPACK_LIBRARIES})
 endif ()
 
 
