@@ -188,12 +188,12 @@ if ( LIBUSB_FOUND )
 endif ()
 
 
-option (USE_LIBFTDI "libFTDI1" ON)
+option (USE_LIBFTDI "libFTDI" ON)
 if (USE_LIBFTDI)
   find_package ( LibFTDI1 NO_MODULE )
 endif ()
 if ( LIBFTDI_FOUND )
-  add_pkgtest ( libftdi1 INCLUDES ${LIBFTDI_INCLUDE_DIRS} LIBS ${LIBFTDI_LIBRARIES})
+  add_pkgtest ( libftdi INCLUDES ${LIBFTDI_INCLUDE_DIRS} LIBS ${LIBFTDI_LIBRARIES})
 endif ()
 
 option (USE_MUPARSER "muParser" ON)
