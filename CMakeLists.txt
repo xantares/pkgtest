@@ -265,6 +265,14 @@ if ( Boost_FOUND )
 endif ()
 
 
+option(USE_PYTHON "python" ON)
+if (USE_PYTHON)
+  find_package(PythonLibs)
+endif()
+if (PYTHONLIBS_FOUND)
+  add_pkgtest ( python INCLUDES ${PYTHON_INCLUDE_DIR} LIBS ${PYTHON_LIBRARIES})
+endif()
+
 
 option (USE_QT4 "qt4" ON)
 if (USE_QT4)
