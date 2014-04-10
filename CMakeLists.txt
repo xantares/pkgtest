@@ -47,6 +47,7 @@ if ( BLAS_FOUND )
   add_pkgtest ( blas EXT .f90 LIBS ${BLAS_LIBRARIES})
 endif ()
 
+
 option (USE_BULLET "bullet" ON)
 if (USE_BULLET)
   find_package ( Bullet )
@@ -62,6 +63,16 @@ if (USE_BOX2D)
 endif ()
 if ( BOX2D_FOUND )
   add_pkgtest ( box2d EXT .cxx INCLUDES ${BOX2D_INCLUDE_DIR} LIBS ${BOX2D_LIBRARY})
+endif ()
+
+
+option(USE_CGAL "cgal" ON)
+if (USE_CGAL)
+  find_package ( CGAL NO_MODULE )
+endif ()
+if ( CGAL_FOUND )
+  include(${CGAL_USE_FILE})
+  add_pkgtest ( cgal EXT .cxx INCLUDES ${CGAL_INCLUDE_DIRS} LIBS ${CGAL_LIBRARIES})
 endif ()
 
 
