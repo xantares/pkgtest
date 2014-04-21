@@ -258,12 +258,20 @@ endif ()
 
 option (USE_BOOST "boost" ON)
 if (USE_BOOST)
-  find_package ( Boost )
+  find_package ( Boost 1.33.1 REQUIRED COMPONENTS thread_win32 system  )
 endif ()
 if ( Boost_FOUND )
   add_pkgtest ( boost EXT .cxx INCLUDES ${Boost_INCLUDE_DIRS} LIBS ${Boost_LIBRARIES})
 endif ()
 
+
+option (USE_READLINE "readline" ON)
+if (USE_READLINE)
+  find_package ( Readline )
+endif ()
+if ( READLINE_FOUND )
+  add_pkgtest ( readline INCLUDES ${Readline_INCLUDE_DIRS} LIBS ${Readline_LIBRARIES})
+endif ()
 
 
 option (USE_QT4 "qt4" ON)
