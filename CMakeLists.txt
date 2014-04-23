@@ -78,13 +78,12 @@ if ( BOX2D_FOUND )
 endif ()
 
 
-option(USE_CGAL "cgal" OFF)
+option(USE_CGAL "cgal" ON)
 if (USE_CGAL)
   find_package ( CGAL NO_MODULE )
 endif ()
 if ( CGAL_FOUND )
-#   include(${CGAL_USE_FILE})
-  add_pkgtest ( cgal EXT .cxx INCLUDES ${CGAL_INCLUDE_DIRS} LIBS ${CGAL_LIBRARIES})
+  add_pkgtest ( cgal EXT .cxx INCLUDES ${CGAL_INCLUDE_DIRS} LIBS ${CGAL_LIBRARY} ${CGAL_3RD_PARTY_LIBRARIES} ${GMP_LIBRARIES})
 endif ()
 
 
