@@ -328,7 +328,7 @@ endif ()
 
 option (USE_QWT "qwt" ON)
 if (USE_QWT)
-  find_package ( Qwt )
+  find_package ( Qwt 6 )
 endif ()
 if ( QWT_FOUND AND QT4_FOUND)
   add_pkgtest ( qwt EXT .cxx INCLUDES ${QT4_INCLUDE_DIRS};${QWT_INCLUDE_DIRS} LIBS ${QT4_LIBRARIES};${QWT_LIBRARIES})
