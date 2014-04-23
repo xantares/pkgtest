@@ -39,6 +39,18 @@ macro ( add_pkgtest PKGNAME )
 endmacro()
 
 
+option (USE_ASSIMP "assimp" ON)
+if (USE_ASSIMP)
+  find_package ( Assimp NO_MODULE )
+  if (ASSIMP_INCLUDE_DIRS AND ASSIMP_LIBRARIES)
+    set ( ASSIMP_FOUND TRUE )
+  endif ()
+endif ()
+if ( ASSIMP_FOUND )
+  add_pkgtest ( assimp EXT .cxx INCLUDES ${ASSIMP_INCLUDE_DIRS} LIBS ${ASSIMP_LIBRARIES})
+endif ()
+
+
 option (USE_BLAS "blas" ON)
 if (USE_BLAS)
   find_package ( BLAS )
@@ -168,7 +180,7 @@ if (USE_LAPACK)
   find_package ( LAPACK )
 endif ()
 if ( LAPACK_FOUND )
-  add_pkgtest ( lapack EXT .f90 LIBS ${LAPACK_LIBRARIES})
+  add_pkgtest ( lapack EXT .f90 LIBS ${BLAS_LIBRARIES} ${LAPACK_LIBRARIES})
 endif ()
 
 
@@ -269,7 +281,7 @@ endif ()
 
 option (USE_BOOST "boost" ON)
 if (USE_BOOST)
-  find_package ( Boost 1.33.1 REQUIRED COMPONENTS thread_win32 system  )
+  find_package ( Boost 1.33.1 REQUIRED )
 endif ()
 if ( Boost_FOUND )
   add_pkgtest ( boost EXT .cxx INCLUDES ${Boost_INCLUDE_DIRS} LIBS ${Boost_LIBRARIES})
