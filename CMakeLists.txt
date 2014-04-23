@@ -78,12 +78,12 @@ if ( BOX2D_FOUND )
 endif ()
 
 
-option(USE_CGAL "cgal" ON)
+option(USE_CGAL "cgal" OFF)
 if (USE_CGAL)
   find_package ( CGAL NO_MODULE )
 endif ()
 if ( CGAL_FOUND )
-  include(${CGAL_USE_FILE})
+#   include(${CGAL_USE_FILE})
   add_pkgtest ( cgal EXT .cxx INCLUDES ${CGAL_INCLUDE_DIRS} LIBS ${CGAL_LIBRARIES})
 endif ()
 
@@ -281,7 +281,7 @@ endif ()
 
 option (USE_BOOST "boost" ON)
 if (USE_BOOST)
-  find_package ( Boost 1.33.1 REQUIRED )
+  find_package ( Boost )
 endif ()
 if ( Boost_FOUND )
   add_pkgtest ( boost EXT .cxx INCLUDES ${Boost_INCLUDE_DIRS} LIBS ${Boost_LIBRARIES})
