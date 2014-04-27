@@ -6,6 +6,11 @@ list ( APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake )
 
 enable_testing ()
 
+
+if (MINGW)
+  find_program ( WINE_EXECUTABLE NAMES wine )
+endif ()
+
 macro ( add_pkgtest PKGNAME )
   set (_EXT .c)
   set (_INCLUDES)
@@ -35,7 +40,7 @@ macro ( add_pkgtest PKGNAME )
   target_include_directories( t_${PKGNAME} PUBLIC ${_INCLUDES})
 
   install (TARGETS t_${PKGNAME} DESTINATION bin)
-  add_test ( t_${PKGNAME} t_${PKGNAME}${CMAKE_EXECUTABLE_SUFFIX} )
+  add_test ( t_${PKGNAME} ${WINE_EXECUTABLE} t_${PKGNAME}${CMAKE_EXECUTABLE_SUFFIX} )
 endmacro()
 
 
