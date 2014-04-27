@@ -383,8 +383,8 @@ option (USE_SDL_GFX "sdl_gfx" ON)
 if (USE_SDL_GFX)
   find_package ( SDL_gfx )
 endif ()
-if ( SDLGFX_FOUND )
-  add_pkgtest ( sdl_gfx INCLUDES ${SDLGFX_INCLUDE_DIR} LIBS ${SDLGFX_LIBRARY} ${SDL_LIBRARY})
+if ( SDL_GFX_FOUND )
+  add_pkgtest ( sdl_gfx INCLUDES ${SDL_GFX_INCLUDE_DIR} LIBS ${SDL_GFX_LIBRARY} ${SDL_LIBRARY})
 endif ()
 
 
