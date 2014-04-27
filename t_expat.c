@@ -60,7 +60,7 @@ main(int argc, char **argv) {
     int len = strlen(Buff);
 
     if (! XML_Parse(p, Buff, len, done)) {
-      fprintf(stderr, "Parse error at line %d:\n%s\n",
+      fprintf(stderr, "Parse error at line %ld:\n%s\n",
 	      XML_GetCurrentLineNumber(p),
 	      XML_ErrorString(XML_GetErrorCode(p)));
       exit(-1);
