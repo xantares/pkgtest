@@ -1,5 +1,9 @@
 cmake_minimum_required ( VERSION 2.8 )
 
+if ( NOT DEFINED CMAKE_BUILD_TYPE )
+  set( CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING "Build type" )
+endif ()
+
 project ( mingw-test C CXX Fortran )
 
 list ( APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake )
@@ -356,4 +360,12 @@ if ( Qt5Widgets_FOUND )
   add_pkgtest ( qt5 EXT .cxx INCLUDES ${Qt5Widgets_INCLUDE_DIRS} LIBS ${Qt5Widgets_LIBRARIES} )
 endif ()
 
+
+option (USE_SDL "sdl" ON)
+if (USE_SDL)
+  find_package ( SDL )
+endif ()
+if ( SDL_FOUND )
+  add_pkgtest ( sdl INCLUDES ${SDL_INCLUDE_DIR} LIBS ${SDL_LIBRARY} )
+endif ()
 
