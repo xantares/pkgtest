@@ -83,13 +83,12 @@ if ( BOX2D_FOUND )
 endif ()
 
 
-option(USE_CGAL "cgal" OFF)
+option(USE_CGAL "cgal" ON)
 if (USE_CGAL)
   find_package ( CGAL NO_MODULE )
 endif ()
 if ( CGAL_FOUND )
-#   include(${CGAL_USE_FILE})
-  add_pkgtest ( cgal EXT .cxx INCLUDES ${CGAL_INCLUDE_DIRS} LIBS ${CGAL_LIBRARIES})
+  add_pkgtest ( cgal EXT .cxx INCLUDES ${CGAL_INCLUDE_DIRS} LIBS ${CGAL_LIBRARY} ${CGAL_3RD_PARTY_LIBRARIES} ${GMP_LIBRARIES})
 endif ()
 
 
@@ -333,7 +332,7 @@ endif ()
 
 option (USE_QWT "qwt" ON)
 if (USE_QWT)
-  find_package ( Qwt )
+  find_package ( Qwt 6 )
 endif ()
 if ( QWT_FOUND AND QT4_FOUND)
   add_pkgtest ( qwt EXT .cxx INCLUDES ${QT4_INCLUDE_DIRS};${QWT_INCLUDE_DIRS} LIBS ${QT4_LIBRARIES};${QWT_LIBRARIES})
