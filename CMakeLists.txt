@@ -369,3 +369,13 @@ if ( SDL_FOUND )
   add_pkgtest ( sdl INCLUDES ${SDL_INCLUDE_DIR} LIBS ${SDL_LIBRARY} )
 endif ()
 
+
+option (USE_SDL2 "sdl2" ON)
+if (USE_SDL2)
+  find_package ( SDL2 )
+endif ()
+if ( SDL2_FOUND )
+  add_pkgtest ( sdl2 INCLUDES ${SDL2_INCLUDE_DIR} LIBS ${SDL2_LIBRARY} )
+endif ()
+
+

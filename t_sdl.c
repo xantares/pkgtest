@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 
   screen = SDL_SetVideoMode( 640 , 480 , 32 , SDL_DOUBLEBUF|SDL_HWSURFACE|SDL_ANYFORMAT);
 
-  SDL_FillRect(screen , NULL , 0x66FF00);
+  SDL_FillRect(screen , NULL , 0x66FF00);// green
 
   SDL_Flip(screen);
 
