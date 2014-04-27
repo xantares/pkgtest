@@ -397,3 +397,10 @@ if ( SDL2_FOUND )
 endif ()
 
 
+option (USE_SDL2_IMAGE "sdl2_image" ON)
+if (USE_SDL2_IMAGE)
+  find_package ( SDL2_image )
+endif ()
+if ( SDL2_IMAGE_FOUND )
+  add_pkgtest ( sdl2_image INCLUDES ${SDL2_IMAGE_INCLUDE_DIR} LIBS ${SDL2_IMAGE_LIBRARY} ${SDL2_LIBRARY} )
+endif ()
