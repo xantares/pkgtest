@@ -404,3 +404,14 @@ endif ()
 if ( SDL2_IMAGE_FOUND )
   add_pkgtest ( sdl2_image INCLUDES ${SDL2_IMAGE_INCLUDE_DIR} LIBS ${SDL2_IMAGE_LIBRARY} ${SDL2_LIBRARY} )
 endif ()
+
+
+option (USE_VORBIS "vorbis" ON)
+if (USE_VORBIS)
+  find_package ( Vorbis )
+endif ()
+if ( VORBIS_FOUND )
+  add_pkgtest ( vorbis INCLUDES ${VORBIS_INCLUDE_DIRS} LIBS ${VORBIS_LIBRARIES} )
+endif ()
+
+
