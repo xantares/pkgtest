@@ -388,6 +388,18 @@ if ( SDL_GFX_FOUND )
 endif ()
 
 
+option (USE_SDL_MIXER "sdl_mixer" ON)
+if (USE_SDL_MIXER)
+  find_package ( SDL_mixer )
+endif ()
+if ( SDL_MIXER_FOUND )
+  if (NOT ${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_BINARY_DIR})
+    execute_process( COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_SOURCE_DIR}/test.wav ${CMAKE_CURRENT_BINARY_DIR}/test.wav )
+  endif ()
+  add_pkgtest ( sdl_mixer INCLUDES ${SDL_MIXER_INCLUDE_DIRS} LIBS ${SDL_MIXER_LIBRARIES} ${SDL_LIBRARY})
+endif ()
+
+
 option (USE_SDL2 "sdl2" ON)
 if (USE_SDL2)
   find_package ( SDL2 )
@@ -403,6 +415,18 @@ if (USE_SDL2_IMAGE)
 endif ()
 if ( SDL2_IMAGE_FOUND )
   add_pkgtest ( sdl2_image INCLUDES ${SDL2_IMAGE_INCLUDE_DIR} LIBS ${SDL2_IMAGE_LIBRARY} ${SDL2_LIBRARY} )
+endif ()
+
+
+option (USE_SDL2_MIXER "sdl2_mixer" ON)
+if (USE_SDL2_MIXER)
+  find_package ( SDL2_mixer )
+endif ()
+if ( SDL2_MIXER_FOUND )
+  if (NOT ${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_BINARY_DIR})
+    execute_process( COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_SOURCE_DIR}/test.wav ${CMAKE_CURRENT_BINARY_DIR}/test.wav )
+  endif ()
+  add_pkgtest ( sdl2_mixer INCLUDES ${SDL2_MIXER_INCLUDE_DIRS} LIBS ${SDL2_MIXER_LIBRARIES} ${SDL2_LIBRARY})
 endif ()
 
 
