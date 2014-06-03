@@ -314,6 +314,18 @@ if (PYTHONLIBS_FOUND)
 endif()
 
 
+option(USE_PNG "png" ON)
+if (USE_PNG)
+  find_package(PNG)
+endif()
+if (PNG_FOUND)
+  if (NOT ${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_BINARY_DIR})
+    execute_process( COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_SOURCE_DIR}/test.png ${CMAKE_CURRENT_BINARY_DIR}/test.png )
+  endif ()
+  add_pkgtest ( png INCLUDES ${PNG_INCLUDE_DIR} LIBS ${PNG_LIBRARY};z)
+endif()
+
+
 option (USE_QT4 "qt4" ON)
 if (USE_QT4)
   find_package ( Qt4 REQUIRED QtCore QtGui)
