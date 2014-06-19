@@ -48,6 +48,15 @@ macro ( add_pkgtest PKGNAME )
 endmacro()
 
 
+option (USE_ARMADILLO "armadillo" ON)
+if (USE_ARMADILLO)
+  find_package ( Armadillo )
+endif ()
+if ( ARMADILLO_FOUND )
+  add_pkgtest ( armadillo EXT .cxx INCLUDES ${ARMADILLO_INCLUDE_DIRS} LIBS ${ARMADILLO_LIBRARIES})
+endif ()
+
+
 option (USE_ASSIMP "assimp" ON)
 if (USE_ASSIMP)
   find_package ( Assimp NO_MODULE NO_DEFAULT_PATH )
