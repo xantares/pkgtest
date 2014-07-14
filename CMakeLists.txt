@@ -4,7 +4,7 @@ if ( NOT DEFINED CMAKE_BUILD_TYPE )
   set( CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING "Build type" )
 endif ()
 
-project ( mingw-test C CXX Fortran )
+project ( pkgtest C CXX Fortran )
 
 list ( APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake )
 
@@ -46,6 +46,15 @@ macro ( add_pkgtest PKGNAME )
   install (TARGETS t_${PKGNAME} DESTINATION bin)
   add_test ( t_${PKGNAME} ${WINE_EXECUTABLE} t_${PKGNAME}${CMAKE_EXECUTABLE_SUFFIX} )
 endmacro()
+
+
+option (USE_AGG "agg" OFF)
+if (USE_AGG)
+  find_package ( AGG )
+endif ()
+if ( AGG_FOUND )
+  add_pkgtest ( agg EXT .cxx INCLUDES ${AGG_INCLUDE_DIRS} LIBS "${AGG_LIBRARIES}")
+endif ()
 
 
 option (USE_ARMADILLO "armadillo" ON)
@@ -252,6 +261,14 @@ if ( NLOPT_FOUND )
   add_pkgtest ( nlopt EXT .cxx INCLUDES ${NLOPT_INCLUDE_DIRS} LIBS ${NLOPT_LIBRARIES})
 endif ()
 
+option (USE_OPENMP "openmp" ON)
+if (USE_OPENMP)
+  find_package ( OpenMP )
+endif ()
+if ( OPENMP_FOUND )
+  set (CMAKE_C_FLAGS "${OpenMP_C_FLAGS} ${CMAKE_C_FLAGS}")
+  add_pkgtest ( openmp )
+endif ()
 
 option (USE_OPENSSL "openssl" ON)
 if (USE_OPENSSL)
@@ -305,7 +322,7 @@ if ( Boost_FOUND )
 endif ()
 
 
-option (USE_READLINE "readline" ON)
+option (USE_READLINE "readline" OFF)
 if (USE_READLINE)
   find_package ( Readline )
 endif ()

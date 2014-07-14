@@ -1,23 +1,37 @@
 
 implicit none
 
-  integer, parameter :: N=2
+  integer, parameter :: N = 2048
+  integer :: i, j
+  DOUBLE PRECISION :: A(N,N), B(N,N), C(N,N)
 
-  complex*16, parameter :: imag1 = cmplx(0.d0, 1.d0)
-  complex*16 :: a(N,N), x(N), y(N)
+  DOUBLE PRECISION :: alpha, beta
 
-  complex*16 :: alpha, beta
+  A(:,:)=2.;
+  B(:,:)=3.;
+  C(:,:)=3.;
+  alpha=1.0; beta=2.0
+  
 
-  a(:,:)=imag1;
-  x(:)=1.d0
-  y(:)=0.d0
+!       do, j=1,N
+!           write (*,*) A(i,j)
+!       enddo
+!   enddo
+  call dgemm('N','N',N ,N ,N , alpha, A, N, B, N, beta, C, N)
 
-  alpha=1.d0; beta=0.d0
+!   print*, C(0,0)
+!   do, i=1,N
+!       do, j=1,N
+!           write (*,*) C(i,j)
+!       enddo
+!   enddo
+end    
+!   DGEMM(TRANSA,TRANSB,M,N,K,ALPHA,A,LDA,B,LDB,BETA,C,LDC)
 
-  call zgemv('N',N,N,alpha,a,N,x,1,beta,y,1)
-
-
-  print*, y
-
-
-  end      
+!  13 * .. Scalar Arguments ..
+! 14 * DOUBLE PRECISION ALPHA,BETA
+! 15 * INTEGER K,LDA,LDB,LDC,M,N
+! 16 * CHARACTER TRANSA,TRANSB
+! 17 * ..
+! 18 * .. Array Arguments ..
+! 19 * DOUBLE PRECISION A(LDA,*),B(LDB,*),C(LDC,*)
