@@ -57,7 +57,7 @@ if ( AGG_FOUND )
 endif ()
 
 
-option (USE_ARMADILLO "armadillo" ON)
+option (USE_ARMADILLO "armadillo" OFF)
 if (USE_ARMADILLO)
   find_package ( Armadillo )
 endif ()
@@ -138,6 +138,15 @@ if (USE_EXPAT)
 endif ()
 if ( EXPAT_FOUND )
   add_pkgtest ( expat INCLUDES ${EXPAT_INCLUDE_DIRS} LIBS ${EXPAT_LIBRARIES})
+endif ()
+
+
+option (USE_FANN "fann" ON)
+if (USE_FANN)
+  find_package (FANN)
+endif ()
+if (FANN_FOUND)
+  add_pkgtest (fann INCLUDES ${FANN_INCLUDE_DIRS} LIBS ${FANN_LIBRARIES} m)
 endif ()
 
 
