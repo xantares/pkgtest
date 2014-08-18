@@ -150,7 +150,7 @@ if (FANN_FOUND)
     execute_process( COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_SOURCE_DIR}/parity8.train ${CMAKE_CURRENT_BINARY_DIR}/parity8.train )
     execute_process( COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_SOURCE_DIR}/parity8.test ${CMAKE_CURRENT_BINARY_DIR}/parity8.test ) 
   endif ()
-  add_pkgtest (fann INCLUDES ${FANN_INCLUDE_DIRS} LIBS ${FANN_LIBRARIES} m)
+  add_pkgtest (fann INCLUDES ${FANN_INCLUDE_DIRS} LIBS ${FANN_LIBRARIES})
 endif ()
 
 
