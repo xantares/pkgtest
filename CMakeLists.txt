@@ -50,19 +50,28 @@ endmacro()
 
 option (USE_AGG "agg" OFF)
 if (USE_AGG)
-  find_package ( AGG )
+  find_package (AGG)
 endif ()
-if ( AGG_FOUND )
+if (AGG_FOUND)
   add_pkgtest ( agg EXT .cxx INCLUDES ${AGG_INCLUDE_DIRS} LIBS "${AGG_LIBRARIES}")
 endif ()
 
 
 option (USE_ARMADILLO "armadillo" OFF)
 if (USE_ARMADILLO)
-  find_package ( Armadillo )
+  find_package (Armadillo)
 endif ()
-if ( ARMADILLO_FOUND )
-  add_pkgtest ( armadillo EXT .cxx INCLUDES ${ARMADILLO_INCLUDE_DIRS} LIBS ${ARMADILLO_LIBRARIES})
+if (ARMADILLO_FOUND)
+  add_pkgtest (armadillo EXT .cxx INCLUDES ${ARMADILLO_INCLUDE_DIRS} LIBS ${ARMADILLO_LIBRARIES})
+endif ()
+
+
+option (USE_ASMJIT "asmjit" ON)
+if (USE_ASMJIT)
+  find_package (AsmJit)
+endif ()
+if (ASMJIT_FOUND)
+  add_pkgtest (asmjit EXT .cxx INCLUDES ${ASMJIT_INCLUDE_DIRS} LIBS ${ASMJIT_LIBRARIES})
 endif ()
 
 
@@ -80,9 +89,9 @@ endif ()
 
 option (USE_BLAS "blas" ON)
 if (USE_BLAS)
-  find_package ( BLAS )
+  find_package (BLAS)
 endif ()
-if ( BLAS_FOUND )
+if (BLAS_FOUND)
   add_pkgtest ( blas EXT .f90 LIBS ${BLAS_LIBRARIES})
 endif ()
 
