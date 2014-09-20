@@ -50,19 +50,28 @@ endmacro()
 
 option (USE_AGG "agg" OFF)
 if (USE_AGG)
-  find_package ( AGG )
+  find_package (AGG)
 endif ()
-if ( AGG_FOUND )
+if (AGG_FOUND)
   add_pkgtest ( agg EXT .cxx INCLUDES ${AGG_INCLUDE_DIRS} LIBS "${AGG_LIBRARIES}")
 endif ()
 
 
-option (USE_ARMADILLO "armadillo" ON)
+option (USE_ARMADILLO "armadillo" OFF)
 if (USE_ARMADILLO)
-  find_package ( Armadillo )
+  find_package (Armadillo)
 endif ()
-if ( ARMADILLO_FOUND )
-  add_pkgtest ( armadillo EXT .cxx INCLUDES ${ARMADILLO_INCLUDE_DIRS} LIBS ${ARMADILLO_LIBRARIES})
+if (ARMADILLO_FOUND)
+  add_pkgtest (armadillo EXT .cxx INCLUDES ${ARMADILLO_INCLUDE_DIRS} LIBS ${ARMADILLO_LIBRARIES})
+endif ()
+
+
+option (USE_ASMJIT "asmjit" ON)
+if (USE_ASMJIT)
+  find_package (AsmJit)
+endif ()
+if (ASMJIT_FOUND)
+  add_pkgtest (asmjit EXT .cxx INCLUDES ${ASMJIT_INCLUDE_DIRS} LIBS ${ASMJIT_LIBRARIES})
 endif ()
 
 
@@ -80,9 +89,9 @@ endif ()
 
 option (USE_BLAS "blas" ON)
 if (USE_BLAS)
-  find_package ( BLAS )
+  find_package (BLAS)
 endif ()
-if ( BLAS_FOUND )
+if (BLAS_FOUND)
   add_pkgtest ( blas EXT .f90 LIBS ${BLAS_LIBRARIES})
 endif ()
 
@@ -138,6 +147,19 @@ if (USE_EXPAT)
 endif ()
 if ( EXPAT_FOUND )
   add_pkgtest ( expat INCLUDES ${EXPAT_INCLUDE_DIRS} LIBS ${EXPAT_LIBRARIES})
+endif ()
+
+
+option (USE_FANN "fann" ON)
+if (USE_FANN)
+  find_package (FANN)
+endif ()
+if (FANN_FOUND)
+  if (NOT ${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_BINARY_DIR})
+    execute_process( COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_SOURCE_DIR}/parity8.train ${CMAKE_CURRENT_BINARY_DIR}/parity8.train )
+    execute_process( COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_SOURCE_DIR}/parity8.test ${CMAKE_CURRENT_BINARY_DIR}/parity8.test ) 
+  endif ()
+  add_pkgtest (fann INCLUDES ${FANN_INCLUDE_DIRS} LIBS ${FANN_LIBRARIES})
 endif ()
 
 
