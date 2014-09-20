@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 #include <tbb/parallel_reduce.h>
 #include <tbb/task_scheduler_init.h>
 #include <tbb/blocked_range.h>
