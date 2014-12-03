@@ -7,8 +7,10 @@ int main(int argc, char *argv[])
 
   atexit(SDL_Quit);
 
-  if( SDL_Init(SDL_INIT_VIDEO) < 0 ) exit(1);
-
+  if( SDL_Init(SDL_INIT_VIDEO) < 0 ) {
+    printf("Unable to initialize SDL\n");
+    exit(1);
+  }
   SDL_WM_SetCaption("SDL Window", NULL);
 
   screen = SDL_SetVideoMode( 640 , 480 , 32 , SDL_DOUBLEBUF|SDL_HWSURFACE|SDL_ANYFORMAT);

@@ -116,7 +116,7 @@ endif ()
 
 option(USE_CGAL "cgal" ON)
 if (USE_CGAL)
-  find_package ( CGAL NO_MODULE NO_DEFAULT_PATH)
+  find_package ( CGAL NO_MODULE )
 endif ()
 if ( CGAL_FOUND )
   add_pkgtest ( cgal EXT .cxx INCLUDES ${CGAL_INCLUDE_DIRS} LIBS ${CGAL_LIBRARY} ${CGAL_3RD_PARTY_LIBRARIES} ${GMP_LIBRARIES})
@@ -187,6 +187,15 @@ if (USE_HDF5)
 endif ()
 if ( HDF5_FOUND )
   add_pkgtest ( hdf5 INCLUDES ${HDF5_INCLUDE_DIRS} LIBS ${HDF5_LIBRARIES})
+endif ()
+
+
+option (USE_HMAT "hmat" ON)
+if (USE_HMAT)
+  find_package (HMAT NO_MODULE)
+endif ()
+if (HMAT_FOUND)
+  add_pkgtest (hmat INCLUDES ${HMAT_INCLUDE_DIRS} LIBS ${HMAT_LIBRARIES})
 endif ()
 
 
@@ -385,7 +394,7 @@ if (PNG_FOUND)
 endif()
 
 
-option (USE_QT4 "qt4" ON)
+option (USE_QT4 "qt4" OFF)
 if (USE_QT4)
   find_package ( Qt4 REQUIRED QtCore QtGui)
 endif ()
