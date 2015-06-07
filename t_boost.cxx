@@ -1,8 +1,17 @@
+#include <string.h>
 #include <iostream>
 #include <boost/accumulators/accumulators.hpp>
 #include <boost/accumulators/statistics/stats.hpp>
 #include <boost/accumulators/statistics/mean.hpp>
 #include <boost/accumulators/statistics/moment.hpp>
+#include <boost/math/special_functions/gamma.hpp>
+#include <boost/math/special_functions.hpp>
+
+// #include <boost/math/distributions/students_t.hpp>
+// #include <boost/math/distributions/non_central_t.hpp>
+// #include <boost/math/special_functions/beta.hpp>
+
+using namespace boost::math;
 using namespace boost::accumulators;
 
 int main()
