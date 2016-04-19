@@ -148,6 +148,23 @@ if (EXPAT_FOUND)
 endif ()
 
 
+option (USE_EXPRTK "exprtk" ON)
+if (MINGW AND CMAKE_SIZEOF_VOID_P EQUAL 8)
+  # avoid assembler error on x86_64-w64-mingw32 regardless of optimization/debug flags
+  set (USE_EXPRTK FALSE CACHE BOOL "" FORCE)
+endif ()
+if (USE_EXPRTK)
+  find_package (ExprTk)
+endif ()
+if (EXPRTK_FOUND)
+  add_pkgtest (exprtk EXT .cxx INCLUDES ${EXPRTK_INCLUDE_DIRS})
+  if (MINGW)
+    # disable debug symbols to avoid assembler error: "t_exprtk.cxx.obj: too many sections (58971)"
+    set_source_files_properties (t_exprtk.cxx PROPERTIES COMPILE_FLAGS "-g0")
+  endif ()
+endif ()
+
+
 option (USE_FANN "fann" ON)
 if (USE_FANN)
   find_package (FANN)
