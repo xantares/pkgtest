@@ -198,10 +198,19 @@ endif ()
 
 option (USE_HDF5 "hdf5" ON)
 if (USE_HDF5)
-  find_package (HDF5)
+  # hdf5 was compiled using cmake and provides cmake config files
+  find_package (HDF5 NO_MODULE)
 endif ()
 if (HDF5_FOUND)
-  add_pkgtest (hdf5 INCLUDES ${HDF5_INCLUDE_DIRS} LIBS ${HDF5_LIBRARIES})
+  add_pkgtest (hdf5 INCLUDES ${HDF5_INCLUDE_DIR} LIBS hdf5)
+else ()
+  # hdf5 was compiled using autotools
+  if (USE_HDF5)
+    find_package (HDF5)
+  endif ()
+  if (HDF5_FOUND)
+    add_pkgtest (hdf5 INCLUDES ${HDF5_INCLUDE_DIRS} LIBS ${HDF5_LIBRARIES})
+  endif ()
 endif ()
 
 
