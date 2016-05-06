@@ -327,6 +327,16 @@ if (OPENCV_CORE_FOUND AND OPENCV_HIGHGUI_FOUND AND OPENCV_IMGPROC_FOUND AND OPEN
   add_pkgtest (opencv EXT .cxx INCLUDES ${OpenCV_INCLUDE_DIRS} LIBS ${OpenCV_LIBS})
 endif ()
 
+
+option (USE_OPENMESH "openmesh" ON)
+if (USE_OPENMESH)
+  find_package (OpenMesh)
+endif ()
+if (OPENMESH_FOUND)
+  add_pkgtest (openmesh EXT .cxx INCLUDES ${OPENMESH_INCLUDE_DIRS} LIBS ${OPENMESH_LIBRARIES})
+endif ()
+
+
 option (USE_OPENMP "openmp" ON)
 if (USE_OPENMP)
   find_package (OpenMP)
