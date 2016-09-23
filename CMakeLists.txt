@@ -148,7 +148,7 @@ if (EXPAT_FOUND)
 endif ()
 
 
-option (USE_EXPRTK "exprtk" ON)
+option (USE_EXPRTK "exprtk" OFF)
 if (MINGW AND CMAKE_SIZEOF_VOID_P EQUAL 8)
   # avoid assembler error on x86_64-w64-mingw32 regardless of optimization/debug flags
   set (USE_EXPRTK FALSE CACHE BOOL "" FORCE)
