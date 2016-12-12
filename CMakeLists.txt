@@ -265,6 +265,15 @@ if (LAPACK_FOUND)
 endif ()
 
 
+option (USE_LIBCMAES "libcmaes" ON)
+if (USE_LIBCMAES)
+  find_package (LibCmaes)
+endif ()
+if (Libcmaes_FOUND)
+  add_pkgtest (libcmaes EXT .cxx INCLUDES ${LIBCMAES_INCLUDE_DIR} LIBS ${LIBCMAES_LIBRARIES} -fopenmp)
+endif ()
+
+
 option (USE_LIBXML2 "libxml2" ON)
 if (USE_LIBXML2)
   find_package (LibXml2)
