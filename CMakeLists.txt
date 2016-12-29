@@ -223,6 +223,16 @@ if (HMAT_FOUND)
 endif ()
 
 
+option (USE_HQP "hqp" ON)
+if (USE_HQP)
+  find_package (HQP)
+  find_package (TCL)
+endif ()
+if (HQP_FOUND)
+  add_pkgtest (hqp EXT .cxx INCLUDES ${HQP_INCLUDE_DIRS} LIBS ${HQP_LIBRARIES} ${TCL_LIBRARY})
+endif ()
+
+
 option (USE_ICONV "iconv" ON)
 if (USE_ICONV)
   find_package (Iconv)
