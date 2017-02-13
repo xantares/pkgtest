@@ -187,6 +187,15 @@ if (FFTW_FOUND)
 endif ()
 
 
+option (USE_FREEGLUT "freeglut" ON)
+if (USE_FREEGLUT)
+  find_package (FreeGLUT)
+endif ()
+if (FREEGLUT_FOUND)
+  add_pkgtest (freeglut INCLUDES ${FREEGLUT_INCLUDE_DIRS} LIBS ${FREEGLUT_LIBRARIES} opengl32)
+endif ()
+
+
 option (USE_FREETYPE "freetype" ON)
 if (USE_FREETYPE)
   find_package (Freetype)
