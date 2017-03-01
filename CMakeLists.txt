@@ -581,3 +581,11 @@ if (VORBIS_FOUND)
 endif ()
 
 
+option (USE_VTK "vtk" ON)
+if (USE_VTK)
+  find_package (VTK)
+endif ()
+if (VTK_FOUND)
+  include (${VTK_USE_FILE})
+  add_pkgtest (vtk EXT .cxx LIBS ${VTK_LIBRARIES})
+endif ()
