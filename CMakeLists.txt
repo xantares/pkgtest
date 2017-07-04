@@ -484,15 +484,6 @@ if (QSCINTILLA_FOUND AND QT4_FOUND)
 endif ()
 
 
-option (USE_QWT "qwt" ON)
-if (USE_QWT)
-  find_package (Qwt 6)
-endif ()
-if (QWT_FOUND AND QT4_FOUND)
-  add_pkgtest (qwt EXT .cxx INCLUDES ${QT4_INCLUDE_DIRS};${QWT_INCLUDE_DIRS} LIBS ${QT4_LIBRARIES};${QWT_LIBRARIES})
-endif ()
-
-
 option (USE_QSINT "qsint" ON)
 if (USE_QSINT)
   find_package (QSint)
@@ -508,6 +499,15 @@ if (USE_QT5)
 endif ()
 if (Qt5Widgets_FOUND)
   add_pkgtest (qt5 EXT .cxx INCLUDES ${Qt5Widgets_INCLUDE_DIRS} LIBS ${Qt5Widgets_LIBRARIES})
+endif ()
+
+
+option (USE_QWT "qwt" ON)
+if (USE_QWT)
+  find_package (Qwt 6)
+endif ()
+if (QWT_FOUND AND Qt5Widgets_FOUND)
+  add_pkgtest (qwt EXT .cxx INCLUDES ${Qt5Widgets_INCLUDE_DIRS};${QWT_INCLUDE_DIRS} LIBS ${Qt5Widgets_LIBRARIES};${QWT_LIBRARIES})
 endif ()
 
 
