@@ -1,0 +1,29 @@
+# - Find minizip
+# Find the native MINIZIP includes and library
+#
+#  MINIZIP_INCLUDE_DIRS - where to find zip.h, etc.
+#  MINIZIP_LIBRARIES    - List of libraries when using minizip.
+#  MINIZIP_FOUND        - True if minizip found.
+
+
+IF (MINIZIP_INCLUDE_DIR)
+  # Already in cache, be silent
+  SET(MINIZIP_FIND_QUIETLY TRUE)
+ENDIF (MINIZIP_INCLUDE_DIR)
+
+FIND_PATH(MINIZIP_INCLUDE_DIR zip.h PATH_SUFFIXES minizip)
+if (MINIZIP_INCLUDE_DIR)
+  set (MINIZIP_INCLUDE_DIRS ${MINIZIP_INCLUDE_DIR})
+endif ()
+
+SET(MINIZIP_NAMES minizip)
+FIND_LIBRARY(MINIZIP_LIBRARY NAMES ${MINIZIP_NAMES} )
+IF(MINIZIP_LIBRARY)
+  SET (MINIZIP_LIBRARIES ${MINIZIP_LIBRARY} )
+ENDIF ()
+# handle the QUIETLY and REQUIRED arguments and set MINIZIP_FOUND to TRUE if 
+# all listed variables are TRUE
+INCLUDE(FindPackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(MiniZip DEFAULT_MSG MINIZIP_LIBRARY MINIZIP_INCLUDE_DIR)
+
+MARK_AS_ADVANCED( MINIZIP_LIBRARY MINIZIP_INCLUDE_DIR )

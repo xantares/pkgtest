@@ -336,6 +336,16 @@ if (LPSOLVE_FOUND)
   add_pkgtest (lpsolve INCLUDES ${LPSOLVE_INCLUDE_DIRS} LIBS ${LPSOLVE_LIBRARIES})
 endif ()
 
+
+option (USE_MINIZIP "minizip" ON)
+if (USE_MINIZIP)
+  find_package (MiniZip)
+endif ()
+if (MiniZip_FOUND)
+  add_pkgtest (minizip INCLUDES ${MINIZIP_INCLUDE_DIRS} LIBS ${MINIZIP_LIBRARIES} z)
+endif ()
+
+
 option (USE_MUPARSER "muParser" ON)
 if (USE_MUPARSER)
   find_package (MuParser)
