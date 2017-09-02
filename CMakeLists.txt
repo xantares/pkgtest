@@ -342,7 +342,7 @@ if (USE_MINIZIP)
   find_package (MiniZip)
 endif ()
 if (MiniZip_FOUND)
-  add_pkgtest (minizip INCLUDES ${MINIZIP_INCLUDE_DIRS} LIBS ${MINIZIP_LIBRARIES} z)
+  add_pkgtest (minizip INCLUDES ${MINIZIP_INCLUDE_DIRS} LIBS ${MINIZIP_LIBRARIES})
 endif ()
 
 
