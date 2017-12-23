@@ -437,7 +437,7 @@ endif ()
 
 option (USE_BOOST "boost" ON)
 if (USE_BOOST)
-  find_package (Boost)
+  find_package (Boost COMPONENTS regex filesystem serialization date_time thread)
 endif ()
 if (Boost_FOUND)
   add_pkgtest (boost EXT .cxx INCLUDES ${Boost_INCLUDE_DIRS} LIBS ${Boost_LIBRARIES})

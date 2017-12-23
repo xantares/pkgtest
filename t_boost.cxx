@@ -6,10 +6,17 @@
 #include <boost/accumulators/statistics/moment.hpp>
 #include <boost/math/special_functions/gamma.hpp>
 #include <boost/math/special_functions.hpp>
-
-// #include <boost/math/distributions/students_t.hpp>
-// #include <boost/math/distributions/non_central_t.hpp>
-// #include <boost/math/special_functions/beta.hpp>
+#include <boost/regex.hpp>
+#include <boost/filesystem.hpp>
+#include <boost/filesystem/fstream.hpp>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/qvm/quat.hpp>
+#include <boost/qvm/quat_operations.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
+#include <boost/thread/thread.hpp>
+#include <boost/geometry.hpp>
+#include <boost/geometry/geometries/point_xy.hpp>
+#include <boost/geometry/geometries/polygon.hpp>
 
 using namespace boost::math;
 using namespace boost::accumulators;
@@ -30,5 +37,31 @@ int main()
     std::cout << "Mean:   " << mean(acc) << std::endl;
     std::cout << "Moment: " << moment<2>(acc) << std::endl;
 
+    // regex
+    std::string s = "Boost Libraries";
+    boost::regex expr{"\\w+\\s\\w+"};
+    std::cout << std::boolalpha << boost::regex_match(s, expr) << '\n';
+
+    // filesystem
+    boost::filesystem::path p{"test.txt"};
+    boost::filesystem::ofstream ofs{p};
+    ofs << "Hello, world!\n";
+
+    // serialization
+    boost::archive::text_oarchive oa{std::cout};
+    int i = 1;
+    oa << i;
+
+    // qvm
+    boost::qvm::quat<float> rx = boost::qvm::rotx_quat(3.14159f);
+    rx *= 42.0f;
+
+    // date_time/thread
+    boost::posix_time::seconds workTime(3);
+    boost::this_thread::sleep(workTime);
+
+    // geometry
+    boost::geometry::model::d2::point_xy<int> p1(1, 1), p2(2, 2);
+    std::cout << "Distance p1-p2 is: " << boost::geometry::distance(p1, p2) << std::endl;
     return 0;
 }
