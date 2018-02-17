@@ -209,6 +209,19 @@ if (FREETYPE_FOUND)
 endif ()
 
 
+option (USE_GLEW "glew" ON)
+if (USE_GLEW)
+  find_package (GLEW)
+  find_package (Qt5OpenGL NO_MODULE)
+  find_package (OpenGL)
+endif ()
+if (GLEW_FOUND AND Qt5OpenGL_FOUND)
+  add_pkgtest (glew EXT .cxx INCLUDES ${Qt5OpenGL_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS} LIBS ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} ${Qt5OpenGL_LIBRARIES})
+  qt5_wrap_cpp (GLEW_MOC widget.h)
+  target_sources(t_glew PUBLIC widget.cpp ${GLEW_MOC})
+endif ()
+
+
 option (USE_HDF5 "hdf5" ON)
 if (USE_HDF5)
   # hdf5 was compiled using cmake and provides cmake config files
