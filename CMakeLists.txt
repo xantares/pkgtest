@@ -4,10 +4,14 @@ if (NOT DEFINED CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING "Build type")
 endif ()
 
-project (pkgtest C CXX Fortran)
+project (pkgtest)
 
 cmake_policy (SET CMP0020 NEW)
 
+option(USE_FORTRAN "fortran" ON)
+if (USE_FORTRAN)
+  enable_language(Fortran)
+endif ()
 
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
@@ -42,7 +46,7 @@ macro (add_pkgtest PKGNAME)
   target_include_directories(t_${PKGNAME} PUBLIC ${_INCLUDES})
 
   install (TARGETS t_${PKGNAME} DESTINATION bin)
-  add_test (t_${PKGNAME} ${CMAKE_CROSSCOMPILING_EMULATOR} t_${PKGNAME}${CMAKE_EXECUTABLE_SUFFIX})
+  add_test (NAME t_${PKGNAME} COMMAND t_${PKGNAME})
 endmacro()
 
 
