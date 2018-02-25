@@ -345,6 +345,20 @@ if (LIBFTDI_FOUND)
   add_pkgtest (libftdi INCLUDES ${LIBFTDI_INCLUDE_DIRS} LIBS ${LIBFTDI_LIBRARIES})
 endif ()
 
+
+option (USE_LLVM "llvm" ON)
+if (USE_LLVM)
+  find_package (LLVM CONFIG)
+endif ()
+if (LLVM_FOUND)
+  message(STATUS "Found LLVM ${LLVM_PACKAGE_VERSION}")
+  llvm_map_components_to_libnames (LLVM_LIBRARIES core ExecutionEngine Interpreter MC MCJIT Support nativecodegen)
+  add_pkgtest (llvm EXT .cxx INCLUDES ${LLVM_INCLUDE_DIRS} LIBS ${LLVM_LIBRARIES})
+  target_compile_definitions (t_llvm PRIVATE ${LLVM_DEFINITIONS})
+  target_include_directories (t_llvm PRIVATE ${LLVM_INCLUDE_DIRS})
+endif ()
+
+
 option (USE_LPSOLVE "lpsolve" ON)
 if (USE_LPSOLVE)
   find_package (LpSolve)
