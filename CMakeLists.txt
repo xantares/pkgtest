@@ -41,7 +41,7 @@ macro (add_pkgtest PKGNAME)
     endif ()
   endforeach()
 
-  add_executable (t_${PKGNAME} t_${PKGNAME}${_EXT})
+  add_executable (t_${PKGNAME} test/t_${PKGNAME}${_EXT})
   target_link_libraries (t_${PKGNAME} ${_LIBS})
   target_include_directories(t_${PKGNAME} PUBLIC ${_INCLUDES})
 
@@ -217,8 +217,8 @@ if (USE_GLEW)
 endif ()
 if (GLEW_FOUND AND Qt5OpenGL_FOUND)
   add_pkgtest (glew EXT .cxx INCLUDES ${Qt5OpenGL_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS} LIBS ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} ${Qt5OpenGL_LIBRARIES})
-  qt5_wrap_cpp (GLEW_MOC widget.h)
-  target_sources(t_glew PUBLIC widget.cpp ${GLEW_MOC})
+  qt5_wrap_cpp (GLEW_MOC test/widget.h)
+  target_sources(t_glew PUBLIC test/widget.cpp ${GLEW_MOC})
 endif ()
 
 
