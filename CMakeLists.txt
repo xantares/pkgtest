@@ -276,6 +276,15 @@ if (JPEG_FOUND)
 endif ()
 
 
+option (USE_JSONCPP "jsoncpp" ON)
+if (USE_JSONCPP)
+  find_package (jsoncpp NO_MODULE)
+endif ()
+if (jsoncpp_FOUND)
+  add_pkgtest (jsoncpp EXT .cxx INCLUDES ${JSONCPP_INCLUDE_DIRS} LIBS jsoncpp_lib)
+endif ()
+
+
 option (USE_LIBDL "libdl" ON)
 if (USE_LIBDL)
   find_package (Libdl)
