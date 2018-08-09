@@ -485,6 +485,7 @@ if (USE_BOOST)
 endif ()
 if (Boost_FOUND)
   add_pkgtest (boost EXT .cxx INCLUDES ${Boost_INCLUDE_DIRS} LIBS ${Boost_LIBRARIES})
+  target_compile_definitions(t_boost PRIVATE BOOST_ERROR_CODE_HEADER_ONLY)
 endif ()
 
 
