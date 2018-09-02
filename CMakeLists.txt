@@ -436,12 +436,23 @@ if (OPENMP_FOUND)
   add_pkgtest (openmp)
 endif ()
 
+
 option (USE_OPENSSL "openssl" ON)
 if (USE_OPENSSL)
   find_package (OpenSSL)
 endif ()
 if (OPENSSL_FOUND)
   add_pkgtest (openssl INCLUDES ${OPENSSL_INCLUDE_DIRS} LIBS ${OPENSSL_LIBRARIES})
+endif ()
+
+
+option (USE_OPTPP "optpp" ON)
+if (USE_OPTPP)
+  find_package (OPTPP)
+endif ()
+if (OPTPP_FOUND)
+  add_pkgtest (optpp EXT .cxx INCLUDES ${OPTPP_INCLUDE_DIRS} LIBS ${OPTPP_LIBRARIES})
+  target_compile_definitions(t_optpp PUBLIC HAVE_NAMESPACES HAVE_FLOAT_H HAVE_FCNTL_H HAVE_DLFCN_H HAVE_BLAS HAVE_FLOOR HAVE_INTTYPES_H HAVE_LIBM HAVE_MEMORY_H HAVE_SSTREAM HAVE_STD HAVE_STDBOOL_H HAVE_STDDEF_H )
 endif ()
 
 
