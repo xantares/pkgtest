@@ -530,6 +530,15 @@ if (PNG_FOUND)
 endif()
 
 
+option (USE_TRILINOS "trilinos" ON)
+if (USE_TRILINOS)
+  find_package (ROL)
+endif()
+if (ROL_FOUND)
+  add_pkgtest (trilinos EXT .cxx INCLUDES ${ROL_INCLUDE_DIR} LIBS ${ROL_LIBRARIES})
+endif()
+
+
 option (USE_QT4 "qt4" OFF)
 if (USE_QT4)
   find_package (Qt4 REQUIRED QtCore QtGui)
