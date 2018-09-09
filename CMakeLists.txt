@@ -59,6 +59,16 @@ if (AGG_FOUND)
 endif ()
 
 
+option (USE_AGRUM "agrum" ON)
+if (USE_AGRUM)
+  find_package (aGrUM)
+endif ()
+if (aGrUM_FOUND)
+  add_pkgtest (agrum EXT .cxx INCLUDES ${AGRUM_INCLUDE_DIRS} LIBS ${AGRUM_LIBRARIES_RELEASE})
+  target_compile_definitions (t_agrum PRIVATE NDEBUG)
+endif ()
+
+
 option (USE_ARMADILLO "armadillo" ON)
 if (USE_ARMADILLO)
   find_package (Armadillo)
