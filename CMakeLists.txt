@@ -228,6 +228,15 @@ if (GLEW_FOUND AND Qt5OpenGL_FOUND)
 endif ()
 
 
+option (USE_GL2PS "gl2ps" ON)
+if (USE_GL2PS)
+  find_package (GL2PS)
+endif ()
+if (GL2PS_FOUND)
+  add_pkgtest (gl2ps INCLUDES ${GL2PS_INCLUDE_DIRS} LIBS ${GL2PS_LIBRARIES})
+endif ()
+
+
 option (USE_HDF5 "hdf5" ON)
 if (USE_HDF5)
   # hdf5 was compiled using cmake and provides cmake config files
