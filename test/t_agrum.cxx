@@ -26,6 +26,11 @@
 
 #include <agrum/BN/BayesNet.h>
 #include <agrum/BN/algorithms/essentialGraph.h>
+#include <agrum/BN/inference/lazyPropagation.h>
+#include <agrum/multidim/potential.h>
+#include <agrum/variables/discretizedVariable.h>
+#include <agrum/variables/labelizedVariable.h>
+#include <agrum/variables/rangeVariable.h>
 
 #define TS_ASSERT_EQUALS(x, y) { if (x != y) { std::ostringstream oss; oss << "got: " << x << " expected: " << y; throw std::invalid_argument(oss.str()); } }
 
@@ -86,6 +91,23 @@
   };
 
 
+static void test_order()
+{
+  gum::BayesNet<double> bn;
+  bn.add(gum::RangeVariable("A", "A", 0, 1));
+  bn.add(gum::RangeVariable("G", "G", 0, 3));
+  bn.addArc("A", "G");
+  bn.generateCPTs();
+  for (int i = 0; i  < 30; ++i)
+  {
+    gum::LazyPropagation<double> ie(&bn);
+    ie.addJointTarget({0, 1});
+    ie.addEvidence("G", 1);
+    ie.makeInference();
+    std::cout << ie.jointPosterior({0, 1})<<std::endl;
+  }
+}
+
 int main()
 {
   EssentialGraphTestSuite egts;
@@ -95,5 +117,6 @@ int main()
   egts.testNotebook1();
   egts.testNotebook2();
   egts.testNotebook3();
+  test_order();
   return 0;
 }

@@ -59,6 +59,14 @@ if (AGG_FOUND)
 endif ()
 
 
+option(USE_PUGIXML "pygixml" ON)
+if (USE_PUGIXML)
+  find_package(pugixml)
+endif ()
+if (PUGIXML_FOUND OR pugixml_FOUND)
+  get_target_property(pugixml_INCLUDE_DIRS pugixml INTERFACE_INCLUDE_DIRECTORIES)
+endif ()
+
 option (USE_AGRUM "agrum" ON)
 if (USE_AGRUM)
   find_package (aGrUM)
@@ -472,6 +480,15 @@ endif ()
 if (OPTPP_FOUND)
   add_pkgtest (optpp EXT .cxx INCLUDES ${OPTPP_INCLUDE_DIRS} LIBS ${OPTPP_LIBRARIES})
   target_compile_definitions(t_optpp PUBLIC HAVE_NAMESPACES HAVE_FLOAT_H HAVE_FCNTL_H HAVE_DLFCN_H HAVE_BLAS HAVE_FLOOR HAVE_INTTYPES_H HAVE_LIBM HAVE_MEMORY_H HAVE_SSTREAM HAVE_STD HAVE_STDBOOL_H HAVE_STDDEF_H )
+endif ()
+
+
+option (USE_PAGMO "pagmo" ON)
+if (USE_PAGMO)
+  find_package (pagmo)
+endif ()
+if (pagmo_FOUND)
+  add_pkgtest (pagmo EXT .cxx LIBS Pagmo::pagmo)
 endif ()
 
 
