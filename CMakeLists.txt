@@ -50,6 +50,16 @@ macro (add_pkgtest PKGNAME)
 endmacro()
 
 
+option (USE_COIN "coin" ON)
+if (USE_COIN)
+  find_package (COIN)
+endif ()
+if (COIN_FOUND)
+  add_pkgtest (coin EXT .cxx INCLUDES ${COIN_INCLUDE_DIRS} LIBS ${COIN_BONMIN_LIBRARIES})
+  target_sources (t_coin  PRIVATE test/MyTMINLP.cpp)
+endif ()
+
+
 option (USE_AGG "agg" OFF)
 if (USE_AGG)
   find_package (AGG)
