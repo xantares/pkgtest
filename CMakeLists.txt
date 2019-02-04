@@ -83,7 +83,9 @@ if (USE_AGRUM)
 endif ()
 if (aGrUM_FOUND)
   add_pkgtest (agrum EXT .cxx INCLUDES ${AGRUM_INCLUDE_DIRS} LIBS ${AGRUM_LIBRARIES_RELEASE})
-  target_compile_definitions (t_agrum PRIVATE NDEBUG)
+  if (MINGW)
+    target_compile_definitions (t_agrum PRIVATE GUM_NO_EXTERN_TEMPLATE_CLASS)
+  endif ()
 endif ()
 
 
