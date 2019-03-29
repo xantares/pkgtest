@@ -73,9 +73,10 @@ option(USE_PUGIXML "pygixml" ON)
 if (USE_PUGIXML)
   find_package(pugixml)
 endif ()
-if (PUGIXML_FOUND OR pugixml_FOUND)
-  get_target_property(pugixml_INCLUDE_DIRS pugixml INTERFACE_INCLUDE_DIRECTORIES)
+if (pugixml_FOUND)
+  add_pkgtest (pugixml EXT .cxx LIBS pugixml)
 endif ()
+
 
 option (USE_AGRUM "agrum" ON)
 if (USE_AGRUM)
