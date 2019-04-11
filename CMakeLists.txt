@@ -84,9 +84,6 @@ if (USE_AGRUM)
 endif ()
 if (aGrUM_FOUND)
   add_pkgtest (agrum EXT .cxx INCLUDES ${AGRUM_INCLUDE_DIRS} LIBS ${AGRUM_LIBRARIES_RELEASE})
-  if (MINGW)
-    target_compile_definitions (t_agrum PRIVATE GUM_NO_EXTERN_TEMPLATE_CLASS)
-  endif ()
 endif ()
 
 
@@ -144,6 +141,15 @@ if (USE_BOX2D)
 endif ()
 if (BOX2D_FOUND)
   add_pkgtest (box2d EXT .cxx INCLUDES ${BOX2D_INCLUDE_DIR} LIBS ${BOX2D_LIBRARY})
+endif ()
+
+
+option(USE_CERES "ceres" ON)
+if (USE_CERES)
+  find_package (Ceres NO_MODULE)
+endif ()
+if (Ceres_FOUND)
+  add_pkgtest (ceres EXT .cxx INCLUDES ${CERES_INCLUDE_DIRS} LIBS ${CERES_LIBRARIES})
 endif ()
 
 
