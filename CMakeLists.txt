@@ -6,7 +6,13 @@ endif ()
 
 project (pkgtest)
 
-cmake_policy (SET CMP0020 NEW)
+if (POLICY CMP0020)
+  cmake_policy (SET CMP0020 NEW)
+endif ()
+
+if (POLICY CMP0072)
+  cmake_policy (SET CMP0072 NEW)
+endif ()
 
 option(USE_FORTRAN "fortran" ON)
 if (USE_FORTRAN)
@@ -227,9 +233,10 @@ endif ()
 option (USE_FREEGLUT "freeglut" ON)
 if (USE_FREEGLUT)
   find_package (FreeGLUT)
+  find_package (OpenGL)
 endif ()
 if (FREEGLUT_FOUND)
-  add_pkgtest (freeglut INCLUDES ${FREEGLUT_INCLUDE_DIRS} LIBS ${FREEGLUT_LIBRARIES} opengl32)
+  add_pkgtest (freeglut INCLUDES ${FREEGLUT_INCLUDE_DIRS} LIBS ${FREEGLUT_LIBRARIES} ${OPENGL_LIBRARIES})
 endif ()
 
 

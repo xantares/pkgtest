@@ -19,7 +19,7 @@
 FIND_PATH(FREEGLUT_INCLUDE_DIR NAMES GL/freeglut.h)
 
 # Look for the library.
-FIND_LIBRARY(FREEGLUT_LIBRARY NAMES freeglut)
+FIND_LIBRARY(FREEGLUT_LIBRARY NAMES freeglut glut)
 
 # Handle the QUIETLY and REQUIRED arguments and set FREEGLUT_FOUND to TRUE if all listed variables are TRUE.
 INCLUDE(FindPackageHandleStandardArgs)

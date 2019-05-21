@@ -117,6 +117,12 @@ Args(int argc, char **argv)
   }
 }
 
+static void Timer(int value)
+{
+  exit(value);
+}
+
+
 int
 main(int argc, char **argv)
 {
@@ -142,6 +148,7 @@ main(int argc, char **argv)
 
   glutKeyboardFunc(Key);
   glutDisplayFunc(Draw);
+  glutTimerFunc(5000, Timer, 0);
   glutMainLoop();
   return 0;             /* ANSI C requires main to return int. */
 }
