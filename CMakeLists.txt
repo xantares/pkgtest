@@ -595,6 +595,15 @@ if (PNG_FOUND)
 endif()
 
 
+option (USE_SGPP "sgpp" ON)
+if (USE_SGPP)
+  find_package (SGpp)
+endif()
+if (SGpp_FOUND)
+  add_pkgtest (sgpp EXT .cxx INCLUDES ${SGPP_INCLUDE_DIR} LIBS ${SGPP_LIBRARIES})
+endif()
+
+
 option (USE_TRILINOS "trilinos" ON)
 if (USE_TRILINOS)
   find_package (ROL)
