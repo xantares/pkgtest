@@ -181,6 +181,14 @@ if (CONFUSE_FOUND)
 endif ()
 
 
+option (USE_CXSPARSE "cxsparse" ON)
+if (USE_CXSPARSE)
+  find_package (CXSparse)
+endif ()
+if (CXSparse_FOUND)
+  add_pkgtest (cxsparse INCLUDES ${CXSPARSE_INCLUDE_DIRS} LIBS ${CXSPARSE_LIBRARIES})
+endif ()
+
 option (USE_EIGEN "eigen" ON)
 if (USE_EIGEN)
   find_package (Eigen)
