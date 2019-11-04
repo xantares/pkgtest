@@ -850,7 +850,7 @@ void tst_numeral() {
     context c;
     expr x = c.real_val("1/3");
     double d = 0;
-    if (!x.is_numeral(d)) {
+    if (!x.is_numeral()) {
         std::cout << x << " is not recognized as a numeral\n";
         return;
     }
