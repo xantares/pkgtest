@@ -371,6 +371,18 @@ if (LAPACK_FOUND)
 endif ()
 
 
+option (USE_LIBBACKTRACE "libbacktrace" ON)
+if (USE_LIBBACKTRACE)
+  find_package (LibBacktrace)
+endif ()
+if (LIBBACKTRACE_FOUND)
+  add_pkgtest (backtrace INCLUDES ${LIBBACKTRACE_INCLUDE_DIRS} LIBS ${LIBBACKTRACE_LIBRARIES})
+  if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    target_compile_options (t_backtrace PRIVATE "-g;-no-pie;-fno-inline")
+  endif ()
+endif ()
+
+
 option (USE_LIBCMAES "libcmaes" ON)
 if (USE_LIBCMAES)
   find_package (LibCmaes)
