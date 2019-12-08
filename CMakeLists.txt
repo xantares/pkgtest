@@ -252,6 +252,15 @@ if (FREEGLUT_FOUND)
 endif ()
 
 
+option (USE_FREEIMAGE "freeimage" ON)
+if (USE_FREEIMAGE)
+  find_package (FreeImage)
+endif ()
+if (FreeImage_FOUND)
+  add_pkgtest (freeimage INCLUDES ${FreeImage_INCLUDE_DIRS} LIBS ${FreeImage_LIBRARIES})
+endif ()
+
+
 option (USE_FREETYPE "freetype" ON)
 if (USE_FREETYPE)
   find_package (Freetype)
