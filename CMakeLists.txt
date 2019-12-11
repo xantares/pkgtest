@@ -643,6 +643,14 @@ if (SGpp_FOUND)
   add_pkgtest (sgpp EXT .cxx INCLUDES ${SGPP_INCLUDE_DIR} LIBS ${SGPP_LIBRARIES})
 endif()
 
+option (USE_SPECTRA "spectra" ON)
+if (USE_SPECTRA)
+  find_package (Spectra)
+endif ()
+if (Spectra_FOUND)
+  add_pkgtest (spectra EXT .cxx INCLUDES ${EIGEN_INCLUDE_DIRS} ${SPECTRA_INCLUDE_DIR})
+endif()
+
 
 option (USE_TRILINOS "trilinos" ON)
 if (USE_TRILINOS)
