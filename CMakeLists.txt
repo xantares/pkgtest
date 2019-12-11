@@ -78,6 +78,13 @@ if (AGG_FOUND)
   add_pkgtest (agg EXT .cxx INCLUDES ${AGG_INCLUDE_DIRS} LIBS "${AGG_LIBRARIES}")
 endif ()
 
+option (USE_ARPACK "arpack" ON)
+if (USE_ARPACK)
+  find_package (arpack-ng MODULE)
+endif ()
+if (arpack-ng_FOUND)
+  add_pkgtest (arpack EXT .cxx INCLUDES ${arpack_ng_INCLUDE_DIRS} LIBS "${arpack_ng_LIBRARIES}")
+endif()
 
 option(USE_PUGIXML "pygixml" ON)
 if (USE_PUGIXML)
