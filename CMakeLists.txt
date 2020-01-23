@@ -290,6 +290,15 @@ if (GLEW_FOUND AND Qt5OpenGL_FOUND)
 endif ()
 
 
+option (USE_GLOG "glog" OFF)
+if (USE_GLOG)
+  find_package (GLOG)
+endif ()
+if (GLOG_FOUND)
+  add_pkgtest (glog EXT .cxx INCLUDES ${GLOG_INCLUDE_DIRS}LIBS glog::glog)
+endif ()
+
+
 option (USE_GL2PS "gl2ps" ON)
 if (USE_GL2PS)
   find_package (GL2PS)
