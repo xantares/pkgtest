@@ -1,4 +1,4 @@
-# - Find Nlopt
+# - Find NLopt
 # Intel Threading Building Blocks offers a rich and complete approach to expressing parallelism in a C++ program
 # www.threadingbuildingblocks.org
 #
@@ -45,7 +45,7 @@ endif ()
 # handle REQUIRED and QUIET options
 include ( FindPackageHandleStandardArgs )
 
-find_package_handle_standard_args ( Nlopt DEFAULT_MSG NLOPT_LIBRARY
+find_package_handle_standard_args ( NLopt DEFAULT_MSG NLOPT_LIBRARY
   NLOPT_INCLUDE_DIR
   NLOPT_INCLUDE_DIRS
   NLOPT_LIBRARIES

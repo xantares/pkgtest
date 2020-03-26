@@ -97,11 +97,7 @@ endif ()
 
 # handle the QUIETLY and REQUIRED arguments
 include ( FindPackageHandleStandardArgs )
-if ( CMAKE_VERSION LESS 2.8.3 )
-  find_package_handle_standard_args( QScintilla DEFAULT_MSG QSCINTILLA_LIBRARY QSCINTILLA_INCLUDE_DIR _QSCINTILLA_VERSION_MATCH )
-else ()
   find_package_handle_standard_args( QScintilla REQUIRED_VARS QSCINTILLA_LIBRARY QSCINTILLA_INCLUDE_DIR _QSCINTILLA_VERSION_MATCH VERSION_VAR QSCINTILLA_VERSION_STRING )
-endif ()
 
 mark_as_advanced (
   QSCINTILLA_LIBRARY

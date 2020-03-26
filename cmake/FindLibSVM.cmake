@@ -122,11 +122,7 @@ endif ()
 
 # handle REQUIRED and QUIET options
 include ( FindPackageHandleStandardArgs )
-if ( CMAKE_VERSION LESS 2.8.3 )
-  find_package_handle_standard_args ( LibSVM DEFAULT_MSG LIBSVM_LIBRARY LIBSVM_INCLUDE_DIR _LIBSVM_VERSION_MATCH )
-else ()
   find_package_handle_standard_args ( LibSVM REQUIRED_VARS LIBSVM_LIBRARY LIBSVM_INCLUDE_DIR _LIBSVM_VERSION_MATCH VERSION_VAR LIBSVM_VERSION_STRING )
-endif ()
 
 mark_as_advanced (
   LIBSVM_LIBRARY

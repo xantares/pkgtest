@@ -165,7 +165,7 @@ int main(int argc, char **argv) {
   settings.compressionMethod = hmat_compress_aca_plus;
 
   hmat_set_parameters(&settings);
-  if (0 != hmat.init())
+  if (hmat.init() != 0)
   {
     fprintf(stderr, "Unable to initialize HMat library\n");
     return 1;
@@ -214,5 +214,6 @@ int main(int argc, char **argv) {
   hmat.destroy(hmatrix);
   hmat_delete_cluster_tree(cluster_tree);
   hmat.finalize();
+  printf("v=%s\n", hmat_get_version());
   return rc;
 }

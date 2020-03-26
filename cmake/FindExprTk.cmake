@@ -57,18 +57,10 @@ endif ()
 # handle REQUIRED and QUIET options
 include (FindPackageHandleStandardArgs)
 
-if (CMAKE_VERSION VERSION_LESS 2.8.3)
-  find_package_handle_standard_args (ExprTk DEFAULT_MSG EXPRTK_INCLUDE_DIR
-    _EXPRTK_VERSION_MATCH
-    EXPRTK_INCLUDE_DIR
-    EXPRTK_VERSION_STRING
- )
-else ()
   find_package_handle_standard_args (ExprTk 
     REQUIRED_VARS EXPRTK_INCLUDE_DIR _EXPRTK_VERSION_MATCH
     VERSION_VAR EXPRTK_VERSION_STRING
  )
-endif ()
 
 mark_as_advanced (
   EXPRTK_INCLUDE_DIR

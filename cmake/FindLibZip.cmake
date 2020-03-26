@@ -30,6 +30,6 @@ else (LIBZIP_INCLUDE_DIR AND LIBZIP_LIBRARIES)
   )
 
   include(FindPackageHandleStandardArgs)
-  find_package_handle_standard_args(LIBZIP DEFAULT_MSG LIBZIP_LIBRARIES LIBZIP_INCLUDE_DIR)
+  find_package_handle_standard_args(LibZip DEFAULT_MSG LIBZIP_LIBRARIES LIBZIP_INCLUDE_DIR)
 
 endif (LIBZIP_INCLUDE_DIR AND LIBZIP_LIBRARIES)

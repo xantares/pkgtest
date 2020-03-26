@@ -98,21 +98,10 @@ endif ()
 # handle REQUIRED and QUIET options
 include ( FindPackageHandleStandardArgs )
 
-if ( CMAKE_VERSION LESS 2.8.3 )
-  find_package_handle_standard_args ( TBB DEFAULT_MSG TBB_LIBRARY
-    _TBB_VERSION_MATCH
-    TBB_INCLUDE_DIR
-    TBB_INCLUDE_DIRS
-    TBB_LIBRARIES
-    TBB_ROOT_DIR
-    TBB_VERSION_STRING
-  )
-else ()
   find_package_handle_standard_args ( TBB
     REQUIRED_VARS TBB_LIBRARY _TBB_VERSION_MATCH TBB_INCLUDE_DIR TBB_INCLUDE_DIRS TBB_LIBRARIES TBB_ROOT_DIR
     VERSION_VAR TBB_VERSION_STRING
   )
-endif ()
 
 mark_as_advanced (
   TBB_LIBRARY

@@ -49,7 +49,7 @@ find_library(LIBCMAES_LIBRARIES NAMES cmaes
 )
 
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(Libcmaes DEFAULT_MSG LIBCMAES_INCLUDE_DIR LIBCMAES_LIBRARIES )
+find_package_handle_standard_args(LibCmaes DEFAULT_MSG LIBCMAES_INCLUDE_DIR LIBCMAES_LIBRARIES )
 
 # show the LIBCMAES_INCLUDE_DIR and LIBCMAES_LIBRARIES variables only in the advanced view
 mark_as_advanced(LIBCMAES_INCLUDE_DIR LIBCMAES_LIBRARIES )

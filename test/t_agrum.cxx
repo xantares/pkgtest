@@ -27,10 +27,10 @@
 #include <agrum/BN/BayesNet.h>
 #include <agrum/BN/algorithms/essentialGraph.h>
 #include <agrum/BN/inference/lazyPropagation.h>
-#include <agrum/multidim/potential.h>
-#include <agrum/variables/discretizedVariable.h>
-#include <agrum/variables/labelizedVariable.h>
-#include <agrum/variables/rangeVariable.h>
+#include <agrum/tools/multidim/potential.h>
+#include <agrum/tools/variables/discretizedVariable.h>
+#include <agrum/tools/variables/labelizedVariable.h>
+#include <agrum/tools/variables/rangeVariable.h>
 
 #define TS_ASSERT_EQUALS(x, y) { if (x != y) { std::ostringstream oss; oss << "got: " << x << " expected: " << y; throw std::invalid_argument(oss.str()); } }
 
