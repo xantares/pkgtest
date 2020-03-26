@@ -110,13 +110,13 @@ static void test_order()
 
 int main()
 {
-  EssentialGraphTestSuite egts;
-  egts.testChain();
-  egts.testVstructure();
-  egts.testCaseD();
-  egts.testNotebook1();
-  egts.testNotebook2();
-  egts.testNotebook3();
+  //EssentialGraphTestSuite egts;
+  //egts.testChain();
+  //egts.testVstructure();
+  //egts.testCaseD();
+  //egts.testNotebook1();
+  //egts.testNotebook2();
+  //egts.testNotebook3();
   test_order();
   return 0;
 }
