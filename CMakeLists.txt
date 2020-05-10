@@ -482,6 +482,16 @@ if (muParser_FOUND)
   add_pkgtest (muparser EXT .cxx INCLUDES ${MUPARSER_INCLUDE_DIRS} LIBS ${MUPARSER_LIBRARIES})
 endif ()
 
+
+option (USE_NAUTY "nauty" ON)
+if (USE_NAUTY)
+  find_package (NAUTY)
+endif ()
+if (NAUTY_FOUND)
+  add_pkgtest (nauty LIBS ${NAUTY_LIBRARIES} INCLUDES ${NAUTY_INCLUDE_DIRS})
+endif ()
+
+
 option (USE_NETCDF "netcdf" ON)
 if (USE_NETCDF)
   find_package (netCDF NO_MODULE)
