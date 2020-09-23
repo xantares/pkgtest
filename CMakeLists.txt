@@ -324,6 +324,7 @@ else ()
   if (HDF5_FOUND)
     add_pkgtest (hdf5 INCLUDES ${HDF5_INCLUDE_DIRS} LIBS ${HDF5_LIBRARIES})
     add_pkgtest (hdf5cpp EXT .cxx INCLUDES ${HDF5_INCLUDE_DIRS} LIBS ${HDF5_LIBRARIES})
+    target_compile_definitions (t_hdf5cpp PRIVATE ${HDF5_DEFINITIONS})
   endif ()
 endif ()
 
