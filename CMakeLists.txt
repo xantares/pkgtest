@@ -486,6 +486,15 @@ if (muParser_FOUND)
 endif ()
 
 
+option (USE_MUMPS "MUMPS" ON)
+if (USE_MUMPS)
+  find_package (MUMPS)
+endif ()
+if (MUMPS_FOUND)
+  add_pkgtest (mumps INCLUDES ${MUMPS_INCLUDE_DIRS} LIBS ${MUMPS_LIBRARIES})
+endif ()
+
+
 option (USE_NAUTY "nauty" ON)
 if (USE_NAUTY)
   find_package (NAUTY)
