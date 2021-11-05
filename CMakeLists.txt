@@ -410,6 +410,15 @@ if (LibCmaes_FOUND)
 endif ()
 
 
+option (USE_LIBHARU "libharu" ON)
+if (USE_LIBHARU)
+  find_package(LibHaru)
+endif ()
+if (LibHaru_FOUND)
+  add_pkgtest (libharu INCLUDES ${LibHaru_INCLUDE_DIRS} LIBS ${LibHaru_LIBRARIES})
+endif ()
+
+
 option (USE_LIBXML2 "libxml2" ON)
 if (USE_LIBXML2)
   find_package (LibXml2)
