@@ -578,6 +578,15 @@ if (pagmo_FOUND)
 endif ()
 
 
+option (USE_PROJ "proj" ON)
+if (USE_PROJ)
+  find_package (LibPROJ)
+endif ()
+if (LibPROJ_FOUND)
+  add_pkgtest (proj LIBS ${LibPROJ_LIBRARIES})
+endif ()
+
+
 option (USE_REGEX "regex" ON)
 if (USE_REGEX)
   find_package (Regex)
