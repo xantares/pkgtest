@@ -583,7 +583,7 @@ if (USE_PROJ)
   find_package (LibPROJ)
 endif ()
 if (LibPROJ_FOUND)
-  add_pkgtest (proj LIBS ${LibPROJ_LIBRARIES})
+  add_pkgtest (proj EXT .cxx LIBS ${LibPROJ_LIBRARIES})
 endif ()
 
 
@@ -726,6 +726,16 @@ endif ()
 if (Qt5Widgets_FOUND)
   add_pkgtest (qt5 EXT .cxx INCLUDES ${Qt5Widgets_INCLUDE_DIRS} LIBS ${Qt5Widgets_LIBRARIES})
 endif ()
+
+
+option (USE_QT6 "qt6" ON)
+if (USE_QT6)
+  find_package (Qt6Widgets NO_MODULE)
+endif ()
+if (Qt6Widgets_FOUND)
+  add_pkgtest (qt6 EXT .cxx INCLUDES ${Qt6Widgets_INCLUDE_DIRS} LIBS ${Qt6Widgets_LIBRARIES})
+endif ()
+
 
 
 option (USE_QWT "qwt" ON)
