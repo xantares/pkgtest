@@ -15,7 +15,7 @@
 #  TBB_ROOT_DIR - root dir (ex. /usr/local)
 
 #=============================================================================
-# Copyright (C) 2005-2013 EDF-EADS-Phimeca
+# Copyright 2005-2021 Airbus-EDF-IMACS-ONERA-Phimeca
 #
 # Distributed under the OSI-approved BSD License (the "License");
 # see accompanying file Copyright.txt for details.
@@ -27,81 +27,69 @@
 # (To distributed this file outside of CMake, substitute the full
 #  License text for the above reference.)
 
-# set TBB_INCLUDE_DIR
-find_path ( TBB_INCLUDE_DIR
-  NAMES
-    tbb/tbb.h
-  PATHS
-    ${TBB_ROOT_DIR}/include
-  DOC
-    "TBB include directory"
-)
+find_path (TBB_INCLUDE_DIR NAMES tbb/tbb.h DOC "TBB include directory")
 
-# set TBB_INCLUDE_DIRS
-set ( TBB_INCLUDE_DIRS ${TBB_INCLUDE_DIR} )
+set (TBB_INCLUDE_DIRS ${TBB_INCLUDE_DIR})
 
 # version
-set ( _VERSION_FILE ${TBB_INCLUDE_DIR}/tbb/tbb_stddef.h )
-if ( EXISTS ${_VERSION_FILE} )
-  file ( STRINGS ${_VERSION_FILE} _VERSION_MAJOR_STRING REGEX ".*define[ ]+TBB_VERSION_MAJOR[ ]+[0-9]+.*" )
-  file ( STRINGS ${_VERSION_FILE} _VERSION_MINOR_STRING REGEX ".*define[ ]+TBB_VERSION_MINOR[ ]+[0-9]+.*" )
-  if ( _VERSION_MAJOR_STRING AND _VERSION_MINOR_STRING )
-    string ( REGEX REPLACE ".*TBB_VERSION_MAJOR[ ]+([0-9]+)" "\\1" TBB_MAJOR_VERSION ${_VERSION_MAJOR_STRING} )
-    string ( REGEX REPLACE ".*TBB_VERSION_MINOR[ ]+([0-9]+)" "\\1" TBB_MINOR_VERSION ${_VERSION_MINOR_STRING} )
-    set ( TBB_VERSION_STRING "${TBB_MAJOR_VERSION}.${TBB_MINOR_VERSION}" )
+if (EXISTS ${TBB_INCLUDE_DIR}/oneapi/tbb/version.h)
+  set (_VERSION_FILE ${TBB_INCLUDE_DIR}/oneapi/tbb/version.h)
+elseif (EXISTS ${TBB_INCLUDE_DIR}/tbb/tbb_stddef.h)
+  set (_VERSION_FILE ${TBB_INCLUDE_DIR}/tbb/tbb_stddef.h)
+endif ()
+if (DEFINED _VERSION_FILE)
+  file (STRINGS ${_VERSION_FILE} _VERSION_MAJOR_STRING REGEX ".*define[ ]+TBB_VERSION_MAJOR[ ]+[0-9]+.*")
+  file (STRINGS ${_VERSION_FILE} _VERSION_MINOR_STRING REGEX ".*define[ ]+TBB_VERSION_MINOR[ ]+[0-9]+.*")
+  if (_VERSION_MAJOR_STRING AND _VERSION_MINOR_STRING)
+    string (REGEX REPLACE ".*TBB_VERSION_MAJOR[ ]+([0-9]+)" "\\1" TBB_MAJOR_VERSION ${_VERSION_MAJOR_STRING})
+    string (REGEX REPLACE ".*TBB_VERSION_MINOR[ ]+([0-9]+)" "\\1" TBB_MINOR_VERSION ${_VERSION_MINOR_STRING})
+    set (TBB_VERSION_STRING "${TBB_MAJOR_VERSION}.${TBB_MINOR_VERSION}")
   endif ()
-  file ( STRINGS ${_VERSION_FILE} _VERSION_INTERFACE_STRING REGEX ".*define[ ]+TBB_INTERFACE_VERSION[ ]+[0-9]+.*" )
-  if ( _VERSION_INTERFACE_STRING )
-    string ( REGEX REPLACE ".*TBB_INTERFACE_VERSION[ ]+([0-9]+)" "\\1" TBB_INTERFACE_VERSION ${_VERSION_INTERFACE_STRING} )
+  file (STRINGS ${_VERSION_FILE} _VERSION_INTERFACE_STRING REGEX ".*define[ ]+TBB_INTERFACE_VERSION[ ]+[0-9]+.*")
+  if (_VERSION_INTERFACE_STRING)
+    string (REGEX REPLACE ".*TBB_INTERFACE_VERSION[ ]+([0-9]+)" "\\1" TBB_INTERFACE_VERSION ${_VERSION_INTERFACE_STRING})
   endif ()
 endif ()
 
 # check version
-set ( _TBB_VERSION_MATCH TRUE )
-if ( TBB_FIND_VERSION AND TBB_VERSION_STRING )
-  if ( TBB_FIND_VERSION_EXACT )
-    if ( ${TBB_FIND_VERSION} VERSION_EQUAL ${TBB_VERSION_STRING} )
+set (_TBB_VERSION_MATCH TRUE)
+if (TBB_FIND_VERSION AND TBB_VERSION_STRING)
+  if (TBB_FIND_VERSION_EXACT)
+    if (${TBB_FIND_VERSION} VERSION_EQUAL ${TBB_VERSION_STRING})
     else()
-      set ( _TBB_VERSION_MATCH FALSE)
+      set (_TBB_VERSION_MATCH FALSE)
     endif ()
   else ()
-    if ( ${TBB_FIND_VERSION} VERSION_GREATER ${TBB_VERSION_STRING} )
-      set ( _TBB_VERSION_MATCH FALSE )
+    if (${TBB_FIND_VERSION} VERSION_GREATER ${TBB_VERSION_STRING})
+      set (_TBB_VERSION_MATCH FALSE)
     endif ()
   endif ()
 endif ()
 
 
-# set TBB_LIBRARY
-find_library ( TBB_LIBRARY
-  NAMES
-    tbb
-  PATHS
-    ${TBB_ROOT_DIR}/lib
-  DOC
-    "TBB library location"
-)
+find_library (TBB_LIBRARY NAMES tbb DOC "TBB library location")
 
-# set TBB_LIBRARIES
-set ( TBB_LIBRARIES ${TBB_LIBRARY} )
+set (TBB_LIBRARIES ${TBB_LIBRARY})
 
 # root dir
 # try to guess root dir from include dir
-if ( TBB_INCLUDE_DIR )
-  string ( REGEX REPLACE "(.*)/include.*" "\\1" TBB_ROOT_DIR ${TBB_INCLUDE_DIR} )
+if (TBB_INCLUDE_DIR)
+  string (REGEX REPLACE "(.*)/include.*" "\\1" TBB_ROOT_DIR ${TBB_INCLUDE_DIR})
 
 # try to guess root dir from library dir
-elseif ( TBB_LIBRARY )
-  string ( REGEX REPLACE "(.*)/lib[/|32|64].*" "\\1" TBB_ROOT_DIR ${TBB_LIBRARY} )
+elseif (TBB_LIBRARY)
+  string (REGEX REPLACE "(.*)/lib[/|32|64].*" "\\1" TBB_ROOT_DIR ${TBB_LIBRARY})
 endif ()
 
 # handle REQUIRED and QUIET options
-include ( FindPackageHandleStandardArgs )
+include (FindPackageHandleStandardArgs)
 
-  find_package_handle_standard_args ( TBB
-    REQUIRED_VARS TBB_LIBRARY _TBB_VERSION_MATCH TBB_INCLUDE_DIR TBB_INCLUDE_DIRS TBB_LIBRARIES TBB_ROOT_DIR
-    VERSION_VAR TBB_VERSION_STRING
-  )
+
+find_package_handle_standard_args (TBB
+  REQUIRED_VARS TBB_LIBRARY _TBB_VERSION_MATCH TBB_INCLUDE_DIR TBB_INCLUDE_DIRS TBB_LIBRARIES
+  VERSION_VAR TBB_VERSION_STRING
+)
+
 
 mark_as_advanced (
   TBB_LIBRARY

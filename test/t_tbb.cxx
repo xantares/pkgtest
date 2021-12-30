@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <tbb/parallel_reduce.h>
-#include <tbb/task_scheduler_init.h>
+#include <tbb/task_arena.h>
 #include <tbb/blocked_range.h>
 #include <tbb/partitioner.h>
 
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
   double area;
   double width = 1./(double)num_rects;
   MyPi my_block((double * const)&width);                    // functor for parallel reduce
-  tbb::task_scheduler_init init;        // initiallize TBB task scheduler
+  tbb::task_arena init;
 
   // parallel MC computation of pi 
   tbb::parallel_reduce(tbb::blocked_range<size_t>(0, num_rects), my_block, tbb::auto_partitioner());
