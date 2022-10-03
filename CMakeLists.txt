@@ -614,10 +614,10 @@ endif()
 
 option (USE_TBB "tbb" ON)
 if (USE_TBB)
-  find_package (TBB)
+  find_package (TBB CONFIG)
 endif ()
 if (TBB_FOUND)
-  add_pkgtest (tbb EXT .cxx INCLUDES ${TBB_INCLUDE_DIRS} LIBS ${TBB_LIBRARIES})
+  add_pkgtest (tbb EXT .cxx INCLUDES ${TBB_INCLUDE_DIRS} LIBS TBB::tbb)
 endif ()
 
 

@@ -5,6 +5,9 @@ Copyright (c) 2015 Microsoft Corporation
 --*/
 
 #include<vector>
+
+#include <sstream>
+#include <iostream>
 #include"z3++.h"
 
 using namespace z3;
