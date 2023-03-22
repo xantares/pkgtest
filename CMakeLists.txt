@@ -403,6 +403,15 @@ if (NGHTTP2_FOUND)
 endif ()
 
 
+option (USE_LIBSSH2 "libssh2" ON)
+if (USE_LIBSSH2)
+  find_package (LibSSH2)
+endif ()
+if (LIBSSH2_FOUND)
+  add_pkgtest (libssh2 INCLUDES ${LIBSSH2_INCLUDE_DIR} LIBS ${LIBSSH2_LIBRARY})
+endif ()
+
+
 option (USE_LAPACK "lapack" ON)
 if (USE_LAPACK)
   find_package (BLAS)
