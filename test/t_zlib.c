@@ -409,8 +409,8 @@ void test_sync(compr, comprLen, uncompr, uncomprLen)
     CHECK_ERR(err, "inflateSync");
 
     err = inflate(&d_stream, Z_FINISH);
-    if (err != Z_DATA_ERROR) {
-        fprintf(stderr, "inflate should report DATA_ERROR\n");
+    if (err != Z_STREAM_END) {
+        fprintf(stderr, "inflate should report STREAM_END\n");
         /* Because of incorrect adler32 */
         exit(1);
     }
