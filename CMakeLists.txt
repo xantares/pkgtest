@@ -124,13 +124,10 @@ endif ()
 
 option (USE_ASSIMP "assimp" OFF)
 if (USE_ASSIMP)
-  find_package (Assimp NO_MODULE)
-  if (ASSIMP_INCLUDE_DIRS AND ASSIMP_LIBRARIES)
-    set (ASSIMP_FOUND TRUE)
-  endif ()
+  find_package (assimp CONFIG)
 endif ()
-if (ASSIMP_FOUND)
-  add_pkgtest (assimp EXT .cxx INCLUDES ${ASSIMP_INCLUDE_DIRS} LIBS ${ASSIMP_LIBRARIES})
+if (assimp_FOUND)
+  add_pkgtest (assimp EXT .cxx LIBS assimp::assimp)
 endif ()
 
 
