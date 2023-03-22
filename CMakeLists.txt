@@ -385,6 +385,15 @@ if (LIBDL_FOUND)
 endif ()
 
 
+option (USE_LIBIDN2 "libidn2" ON)
+if (USE_LIBIDN2)
+  find_package (Libidn2)
+endif ()
+if (Libidn2_FOUND)
+  add_pkgtest (libidn2 INCLUDES ${LIBIDN2_INCLUDE_DIR} LIBS ${LIBIDN2_LIBRARIES})
+endif ()
+
+
 option (USE_LAPACK "lapack" ON)
 if (USE_LAPACK)
   find_package (BLAS)
