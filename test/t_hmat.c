@@ -126,7 +126,7 @@ int main(int argc, char **argv) {
   hmat_interface_t hmat;
   hmat_value_t type;
   hmat_info_t mat_info;
-  int rc;
+  int rc = 0;
   problem_data_t problem_data;
   hmat_admissibility_t * admissibilityCondition = hmat_create_admissibility_standard(3.0);
   int is_parallel_run = 0;
