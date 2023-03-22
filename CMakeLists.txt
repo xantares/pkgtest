@@ -185,6 +185,15 @@ if (CONFUSE_FOUND)
 endif ()
 
 
+option (USE_CURL "curl" ON)
+if (USE_CURL)
+  find_package (CURL)
+endif ()
+if (CURL_FOUND)
+  add_pkgtest (curl INCLUDES ${CURL_INCLUDE_DIRS} LIBS ${CURL_LIBRARIES})
+endif ()
+
+
 option (USE_CXSPARSE "cxsparse" ON)
 if (USE_CXSPARSE)
   find_package (CXSparse)
