@@ -394,6 +394,15 @@ if (Libidn2_FOUND)
 endif ()
 
 
+option (USE_LIBNGHTTP2 "libnghttp2" ON)
+if (USE_LIBNGHTTP2)
+  find_package (NGHTTP2)
+endif ()
+if (NGHTTP2_FOUND)
+  add_pkgtest (libnghttp2 INCLUDES ${NGHTTP2_INCLUDE_DIRS} LIBS ${NGHTTP2_LIBRARIES})
+endif ()
+
+
 option (USE_LAPACK "lapack" ON)
 if (USE_LAPACK)
   find_package (BLAS)
