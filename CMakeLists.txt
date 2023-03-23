@@ -452,12 +452,12 @@ if (LibHaru_FOUND)
 endif ()
 
 
-option (USE_LIBXML2 "libxml2" ON)
-if (USE_LIBXML2)
-  find_package (LibXml2)
+option (USE_LIBPSL "libpsl" ON)
+if (USE_LIBPSL)
+  find_package (LibPSL)
 endif ()
-if (LIBXML2_FOUND)
-  add_pkgtest (libxml2 INCLUDES ${LIBXML2_INCLUDE_DIR} LIBS ${LIBXML2_LIBRARIES})
+if (LIBPSL_FOUND)
+  add_pkgtest (libpsl INCLUDES ${LIBPSL_INCLUDE_DIR} LIBS ${LIBPSL_LIBRARY})
 endif ()
 
 
@@ -485,6 +485,15 @@ if (USE_LIBFTDI)
 endif ()
 if (LIBFTDI_FOUND)
   add_pkgtest (libftdi INCLUDES ${LIBFTDI_INCLUDE_DIRS} LIBS ${LIBFTDI_LIBRARIES})
+endif ()
+
+
+option (USE_LIBXML2 "libxml2" ON)
+if (USE_LIBXML2)
+  find_package (LibXml2)
+endif ()
+if (LIBXML2_FOUND)
+  add_pkgtest (libxml2 INCLUDES ${LIBXML2_INCLUDE_DIR} LIBS ${LIBXML2_LIBRARIES})
 endif ()
 
 
