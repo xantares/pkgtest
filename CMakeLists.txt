@@ -60,13 +60,15 @@ macro (add_pkgtest PKGNAME)
 endmacro()
 
 
+add_pkgtest (null)
+
 option (USE_COIN "coin" ON)
 if (USE_COIN)
   find_package (COIN)
 endif ()
 if (COIN_FOUND)
-  add_pkgtest (coin EXT .cxx INCLUDES ${COIN_INCLUDE_DIRS} LIBS ${COIN_BONMIN_LIBRARIES})
-  target_sources (t_coin  PRIVATE test/MyTMINLP.cpp)
+  add_pkgtest (bonmin EXT .cxx INCLUDES ${COIN_INCLUDE_DIRS} LIBS ${COIN_BONMIN_LIBRARIES})
+  target_sources (t_bonmin  PRIVATE test/MyTMINLP.cpp)
 endif ()
 
 
