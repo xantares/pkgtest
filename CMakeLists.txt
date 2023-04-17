@@ -530,6 +530,15 @@ if (MiniZip_FOUND)
 endif ()
 
 
+option (USE_METIS "metis" ON)
+if (USE_METIS)
+  find_package (Metis)
+endif ()
+if (METIS_FOUND)
+  add_pkgtest (metis INCLUDES ${METIS_INCLUDE_DIRS} LIBS ${METIS_LIBRARIES})
+endif ()
+
+
 option (USE_MUPARSER "muParser" ON)
 if (USE_MUPARSER)
   find_package (muParser)
