@@ -248,6 +248,15 @@ if (FANN_FOUND)
 endif ()
 
 
+option (USE_FASTFLOAT "fastfloat" ON)
+if (USE_FASTFLOAT)
+  find_package (FastFloat)
+endif ()
+if (FastFloat_FOUND)
+  add_pkgtest (fastfloat EXT .cxx LIBS FastFloat::fast_float)
+endif ()
+
+
 option (USE_FFTW "fftw" ON)
 if (USE_FFTW)
   find_package (FFTW)
