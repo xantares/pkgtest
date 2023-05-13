@@ -640,6 +640,15 @@ if (pagmo_FOUND)
 endif ()
 
 
+option (USE_PRIMESIEVE "primesieve" ON)
+if (USE_PRIMESIEVE)
+  find_package (primesieve)
+endif ()
+if (primesieve_FOUND)
+  add_pkgtest (primesieve EXT .cxx LIBS primesieve::libprimesieve)
+endif ()
+
+
 option (USE_PROJ "proj" ON)
 if (USE_PROJ)
   find_package (LibPROJ)
