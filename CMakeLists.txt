@@ -539,6 +539,15 @@ if (MiniZip_FOUND)
 endif ()
 
 
+option (USE_MEDFILE "medfile" ON)
+if (USE_MEDFILE)
+  find_package (MEDFile CONFIG)
+endif ()
+if (MEDFile_FOUND)
+  add_pkgtest (medfile INCLUDES ${MEDFILE_INCLUDE_DIRS} LIBS ${MEDFILE_LIBRARIES})
+endif ()
+
+
 option (USE_METIS "metis" ON)
 if (USE_METIS)
   find_package (Metis)
