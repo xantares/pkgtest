@@ -187,6 +187,15 @@ if (CONFUSE_FOUND)
 endif ()
 
 
+option (USE_CUBA "cuba" ON)
+if (USE_CUBA)
+  find_package (Cuba)
+endif ()
+if (CUBA_FOUND)
+  add_pkgtest (cuba INCLUDES ${CUBA_INCLUDE_DIRS} LIBS ${CUBA_LIBRARIES})
+endif ()
+
+
 option (USE_CURL "curl" ON)
 if (USE_CURL)
   find_package (CURL)
