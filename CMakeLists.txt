@@ -213,6 +213,16 @@ if (CXSparse_FOUND)
   add_pkgtest (cxsparse INCLUDES ${CXSPARSE_INCLUDE_DIRS} LIBS ${CXSPARSE_LIBRARIES})
 endif ()
 
+
+option (USE_DLIB "dlib" ON)
+if (USE_DLIB)
+  find_package (dlib CONFIG)
+endif ()
+if (dlib_FOUND)
+  add_pkgtest (dlib EXT .cxx LIBS dlib::dlib lapack cblas)
+endif ()
+
+
 option (USE_EIGEN "eigen" ON)
 if (USE_EIGEN)
   find_package (Eigen)
