@@ -76,6 +76,21 @@ endif ()
 find_package(MPI)
 if (MPI_FOUND)
  list(APPEND MUMPS_LIBRARIES MPI::MPI_Fortran)
+else ()
+
+  find_path(MUMPS_MPISEQ_INCLUDE_DIR
+    NAMES mpi.h PATH_SUFFIXES MUMPS mumps_seq
+  )
+  if (MUMPS_MPISEQ_INCLUDE_DIR)
+    list(APPEND MUMPS_INCLUDE_DIRS ${MUMPS_MPISEQ_INCLUDE_DIR})
+  endif ()
+
+  find_library(MUMPS_MPISEQ_LIBRARY
+    NAMES mpiseq
+  )
+  if (MUMPS_MPISEQ_LIBRARY)
+    list(APPEND MUMPS_LIBRARIES ${MUMPS_MPISEQ_LIBRARY} ${CMAKE_Fortran_IMPLICIT_LINK_LIBRARIES})
+  endif ()
 endif ()
 
 include(FindPackageHandleStandardArgs)
