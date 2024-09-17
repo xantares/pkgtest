@@ -18,7 +18,7 @@ if (POLICY CMP0076)
   cmake_policy (SET CMP0076 NEW)
 endif ()
 
-option(USE_FORTRAN "fortran" ON)
+option(USE_FORTRAN "fortran" ${USE_DEFAULT})
 if (USE_FORTRAN)
   enable_language(Fortran)
 endif ()
@@ -62,7 +62,9 @@ endmacro()
 
 add_pkgtest (null)
 
-option (USE_COIN "coin" ON)
+option(USE_DEFAULT "default" ON)
+
+option (USE_COIN "coin" ${USE_DEFAULT})
 if (USE_COIN)
   find_package (COIN)
 endif ()
@@ -80,7 +82,7 @@ if (AGG_FOUND)
   add_pkgtest (agg EXT .cxx INCLUDES ${AGG_INCLUDE_DIRS} LIBS "${AGG_LIBRARIES}")
 endif ()
 
-option (USE_ARPACK "arpack" ON)
+option (USE_ARPACK "arpack" ${USE_DEFAULT})
 if (USE_ARPACK)
   find_package (arpack-ng MODULE)
 endif ()
@@ -88,7 +90,7 @@ if (arpack-ng_FOUND)
   add_pkgtest (arpack EXT .cxx INCLUDES ${arpack_ng_INCLUDE_DIRS} LIBS "${arpack_ng_LIBRARIES}")
 endif()
 
-option(USE_PUGIXML "pygixml" ON)
+option(USE_PUGIXML "pygixml" ${USE_DEFAULT})
 if (USE_PUGIXML)
   find_package(pugixml)
 endif ()
@@ -97,7 +99,7 @@ if (pugixml_FOUND)
 endif ()
 
 
-option (USE_AGRUM "agrum" ON)
+option (USE_AGRUM "agrum" ${USE_DEFAULT})
 if (USE_AGRUM)
   find_package (aGrUM)
 endif ()
@@ -106,7 +108,7 @@ if (aGrUM_FOUND)
 endif ()
 
 
-option (USE_ARMADILLO "armadillo" ON)
+option (USE_ARMADILLO "armadillo" ${USE_DEFAULT})
 if (USE_ARMADILLO)
   find_package (Armadillo)
 endif ()
@@ -115,7 +117,7 @@ if (ARMADILLO_FOUND)
 endif ()
 
 
-option (USE_ASMJIT "asmjit" ON)
+option (USE_ASMJIT "asmjit" ${USE_DEFAULT})
 if (USE_ASMJIT)
   find_package (AsmJit)
 endif ()
@@ -133,7 +135,7 @@ if (assimp_FOUND)
 endif ()
 
 
-option (USE_BLAS "blas" ON)
+option (USE_BLAS "blas" ${USE_DEFAULT})
 if (USE_BLAS)
   find_package (BLAS)
 endif ()
@@ -142,7 +144,7 @@ if (BLAS_FOUND)
 endif ()
 
 
-option (USE_BULLET "bullet" ON)
+option (USE_BULLET "bullet" ${USE_DEFAULT})
 if (USE_BULLET)
   find_package (Bullet)
 endif ()
@@ -151,7 +153,7 @@ if (BULLET_FOUND)
 endif ()
 
 
-option (USE_BOX2D "box2d" ON)
+option (USE_BOX2D "box2d" ${USE_DEFAULT})
 if (USE_BOX2D)
   find_package (Box2D)
 endif ()
@@ -160,7 +162,7 @@ if (BOX2D_FOUND)
 endif ()
 
 
-option(USE_CERES "ceres" ON)
+option(USE_CERES "ceres" ${USE_DEFAULT})
 if (USE_CERES)
   find_package (Ceres NO_MODULE)
 endif ()
@@ -169,7 +171,7 @@ if (Ceres_FOUND)
 endif ()
 
 
-option(USE_CGAL "cgal" ON)
+option(USE_CGAL "cgal" ${USE_DEFAULT})
 if (USE_CGAL)
   find_package (CGAL NO_MODULE)
 endif ()
@@ -178,7 +180,7 @@ if (CGAL_FOUND)
 endif ()
 
 
-option (USE_CONFUSE "confuse" ON)
+option (USE_CONFUSE "confuse" ${USE_DEFAULT})
 if (USE_CONFUSE)
   find_package (Confuse)
 endif ()
@@ -187,7 +189,7 @@ if (CONFUSE_FOUND)
 endif ()
 
 
-option (USE_CUBA "cuba" ON)
+option (USE_CUBA "cuba" ${USE_DEFAULT})
 if (USE_CUBA)
   find_package (Cuba)
 endif ()
@@ -196,7 +198,7 @@ if (CUBA_FOUND)
 endif ()
 
 
-option (USE_CURL "curl" ON)
+option (USE_CURL "curl" ${USE_DEFAULT})
 if (USE_CURL)
   find_package (CURL)
 endif ()
@@ -205,7 +207,7 @@ if (CURL_FOUND)
 endif ()
 
 
-option (USE_CXSPARSE "cxsparse" ON)
+option (USE_CXSPARSE "cxsparse" ${USE_DEFAULT})
 if (USE_CXSPARSE)
   find_package (CXSparse)
 endif ()
@@ -214,7 +216,7 @@ if (CXSparse_FOUND)
 endif ()
 
 
-option (USE_DLIB "dlib" ON)
+option (USE_DLIB "dlib" ${USE_DEFAULT})
 if (USE_DLIB)
   find_package (dlib CONFIG)
 endif ()
@@ -223,7 +225,7 @@ if (dlib_FOUND)
 endif ()
 
 
-option (USE_EIGEN "eigen" ON)
+option (USE_EIGEN "eigen" ${USE_DEFAULT})
 if (USE_EIGEN)
   find_package (Eigen)
 endif ()
@@ -232,7 +234,7 @@ if (EIGEN_FOUND)
 endif ()
 
 
-option (USE_EXPAT "expat" ON)
+option (USE_EXPAT "expat" ${USE_DEFAULT})
 if (USE_EXPAT)
   find_package (EXPAT)
 endif ()
@@ -241,7 +243,7 @@ if (EXPAT_FOUND)
 endif ()
 
 
-option (USE_EXPRTK "exprtk" ON)
+option (USE_EXPRTK "exprtk" ${USE_DEFAULT})
 if (USE_EXPRTK)
   find_package (ExprTk)
 endif ()
@@ -254,7 +256,7 @@ if (EXPRTK_FOUND)
 endif ()
 
 
-option (USE_FANN "fann" ON)
+option (USE_FANN "fann" ${USE_DEFAULT})
 if (USE_FANN)
   find_package (FANN)
 endif ()
@@ -267,7 +269,7 @@ if (FANN_FOUND)
 endif ()
 
 
-option (USE_FASTFLOAT "fastfloat" ON)
+option (USE_FASTFLOAT "fastfloat" ${USE_DEFAULT})
 if (USE_FASTFLOAT)
   find_package (FastFloat)
 endif ()
@@ -276,7 +278,7 @@ if (FastFloat_FOUND)
 endif ()
 
 
-option (USE_FFTW "fftw" ON)
+option (USE_FFTW "fftw" ${USE_DEFAULT})
 if (USE_FFTW)
   find_package (FFTW)
 endif ()
@@ -285,7 +287,7 @@ if (FFTW_FOUND)
 endif ()
 
 
-option (USE_FREEGLUT "freeglut" ON)
+option (USE_FREEGLUT "freeglut" ${USE_DEFAULT})
 if (USE_FREEGLUT)
   find_package (FREEGLUT)
   find_package (OpenGL)
@@ -295,7 +297,7 @@ if (FREEGLUT_FOUND)
 endif ()
 
 
-option (USE_FREEIMAGE "freeimage" ON)
+option (USE_FREEIMAGE "freeimage" ${USE_DEFAULT})
 if (USE_FreeImage)
   find_package (FreeImage)
 endif ()
@@ -304,7 +306,7 @@ if (FreeImage_FOUND)
 endif ()
 
 
-option (USE_FREETYPE "freetype" ON)
+option (USE_FREETYPE "freetype" ${USE_DEFAULT})
 if (USE_FREETYPE)
   find_package (Freetype)
 endif ()
@@ -313,7 +315,7 @@ if (FREETYPE_FOUND)
 endif ()
 
 
-option (USE_GLEW "glew" ON)
+option (USE_GLEW "glew" ${USE_DEFAULT})
 if (USE_GLEW)
   find_package (GLEW)
   find_package (Qt5OpenGL NO_MODULE)
@@ -335,7 +337,7 @@ if (0 AND USE_GLOG)
 endif ()
 
 
-option (USE_GL2PS "gl2ps" ON)
+option (USE_GL2PS "gl2ps" ${USE_DEFAULT})
 if (USE_GL2PS)
   find_package (GL2PS)
 endif ()
@@ -344,7 +346,7 @@ if (GL2PS_FOUND)
 endif ()
 
 
-option (USE_HDF5 "hdf5" ON)
+option (USE_HDF5 "hdf5" ${USE_DEFAULT})
 if (USE_HDF5)
   # hdf5 was compiled using cmake and provides cmake config files
   find_package (HDF5 COMPONENTS CXX NO_MODULE)
@@ -365,7 +367,7 @@ else ()
 endif ()
 
 
-option (USE_HMAT "hmat" ON)
+option (USE_HMAT "hmat" ${USE_DEFAULT})
 if (USE_HMAT)
   find_package (HMAT NO_MODULE)
 endif ()
@@ -374,7 +376,7 @@ if (HMAT_FOUND)
 endif ()
 
 
-option (USE_ICONV "iconv" ON)
+option (USE_ICONV "iconv" ${USE_DEFAULT})
 if (USE_ICONV)
   find_package (Iconv)
 endif ()
@@ -383,7 +385,7 @@ if (ICONV_FOUND)
 endif ()
 
 
-option (USE_JPEG "jpeg" ON)
+option (USE_JPEG "jpeg" ${USE_DEFAULT})
 if (USE_JPEG)
   find_package (JPEG)
 endif ()
@@ -395,16 +397,16 @@ if (JPEG_FOUND)
 endif ()
 
 
-option (USE_JSONCPP "jsoncpp" ON)
+option (USE_JSONCPP "jsoncpp" ${USE_DEFAULT})
 if (USE_JSONCPP)
-  find_package (jsoncpp NO_MODULE)
+  find_package (jsoncpp CONFIG)
 endif ()
 if (jsoncpp_FOUND)
   add_pkgtest (jsoncpp EXT .cxx INCLUDES ${JSONCPP_INCLUDE_DIRS} LIBS jsoncpp_lib)
 endif ()
 
 
-option (USE_LIBDL "libdl" ON)
+option (USE_LIBDL "libdl" ${USE_DEFAULT})
 if (USE_LIBDL)
   find_package (Libdl)
 endif ()
@@ -415,7 +417,7 @@ if (LIBDL_FOUND)
 endif ()
 
 
-option (USE_LIBIDN2 "libidn2" ON)
+option (USE_LIBIDN2 "libidn2" ${USE_DEFAULT})
 if (USE_LIBIDN2)
   find_package (Libidn2)
 endif ()
@@ -424,7 +426,7 @@ if (Libidn2_FOUND)
 endif ()
 
 
-option (USE_LIBNGHTTP2 "libnghttp2" ON)
+option (USE_LIBNGHTTP2 "libnghttp2" ${USE_DEFAULT})
 if (USE_LIBNGHTTP2)
   find_package (NGHTTP2)
 endif ()
@@ -433,7 +435,7 @@ if (NGHTTP2_FOUND)
 endif ()
 
 
-option (USE_LIBSSH2 "libssh2" ON)
+option (USE_LIBSSH2 "libssh2" ${USE_DEFAULT})
 if (USE_LIBSSH2)
   find_package (LibSSH2)
 endif ()
@@ -442,7 +444,7 @@ if (LIBSSH2_FOUND)
 endif ()
 
 
-option (USE_LAPACK "lapack" ON)
+option (USE_LAPACK "lapack" ${USE_DEFAULT})
 if (USE_LAPACK)
   find_package (BLAS)
   find_package (LAPACK)
@@ -452,7 +454,7 @@ if (LAPACK_FOUND)
 endif ()
 
 
-option (USE_LIBBACKTRACE "libbacktrace" ON)
+option (USE_LIBBACKTRACE "libbacktrace" ${USE_DEFAULT})
 if (USE_LIBBACKTRACE)
   find_package (LibBacktrace)
 endif ()
@@ -464,7 +466,7 @@ if (LibBacktrace_FOUND)
 endif ()
 
 
-option (USE_LIBCMAES "libcmaes" ON)
+option (USE_LIBCMAES "libcmaes" ${USE_DEFAULT})
 if (USE_LIBCMAES)
   find_package (LibCmaes)
 endif ()
@@ -473,7 +475,7 @@ if (LibCmaes_FOUND)
 endif ()
 
 
-option (USE_LIBHARU "libharu" ON)
+option (USE_LIBHARU "libharu" ${USE_DEFAULT})
 if (USE_LIBHARU)
   find_package(LibHaru)
 endif ()
@@ -482,7 +484,7 @@ if (LibHaru_FOUND)
 endif ()
 
 
-option (USE_LIBPSL "libpsl" ON)
+option (USE_LIBPSL "libpsl" ${USE_DEFAULT})
 if (USE_LIBPSL)
   find_package (LibPSL)
 endif ()
@@ -491,7 +493,7 @@ if (LIBPSL_FOUND)
 endif ()
 
 
-option (USE_LIBSVM "libsvm" ON)
+option (USE_LIBSVM "libsvm" ${USE_DEFAULT})
 if (USE_LIBSVM)
   find_package (LibSVM)
 endif ()
@@ -500,7 +502,7 @@ if (LIBSVM_FOUND)
 endif ()
 
 
-option (USE_LIBUSB "libusb" ON)
+option (USE_LIBUSB "libusb" ${USE_DEFAULT})
 if (USE_LIBUSB)
   find_package (LibUSB)
 endif ()
@@ -509,7 +511,7 @@ if (LibUSB_FOUND)
 endif ()
 
 
-option (USE_LIBFTDI "libFTDI" ON)
+option (USE_LIBFTDI "libFTDI" ${USE_DEFAULT})
 if (USE_LIBFTDI)
   find_package (LibFTDI1 NO_MODULE)
 endif ()
@@ -518,7 +520,7 @@ if (LIBFTDI_FOUND)
 endif ()
 
 
-option (USE_LIBXML2 "libxml2" ON)
+option (USE_LIBXML2 "libxml2" ${USE_DEFAULT})
 if (USE_LIBXML2)
   find_package (LibXml2)
 endif ()
@@ -527,7 +529,7 @@ if (LIBXML2_FOUND)
 endif ()
 
 
-option (USE_LLVM "llvm" ON)
+option (USE_LLVM "llvm" ${USE_DEFAULT})
 if (USE_LLVM)
   find_package (LLVM CONFIG)
 endif ()
@@ -540,7 +542,7 @@ if (LLVM_FOUND)
 endif ()
 
 
-option (USE_LPSOLVE "lpsolve" ON)
+option (USE_LPSOLVE "lpsolve" ${USE_DEFAULT})
 if (USE_LPSOLVE)
   find_package (LpSolve)
 endif ()
@@ -549,7 +551,7 @@ if (LPSOLVE_FOUND)
 endif ()
 
 
-option (USE_MINIZIP "minizip" ON)
+option (USE_MINIZIP "minizip" ${USE_DEFAULT})
 if (USE_MINIZIP)
   find_package (MiniZip)
 endif ()
@@ -558,7 +560,7 @@ if (MiniZip_FOUND)
 endif ()
 
 
-option (USE_MEDFILE "medfile" ON)
+option (USE_MEDFILE "medfile" ${USE_DEFAULT})
 if (USE_MEDFILE)
   find_package (MEDFile CONFIG)
 endif ()
@@ -567,7 +569,7 @@ if (MEDFile_FOUND)
 endif ()
 
 
-option (USE_METIS "metis" ON)
+option (USE_METIS "metis" ${USE_DEFAULT})
 if (USE_METIS)
   find_package (Metis)
 endif ()
@@ -576,7 +578,7 @@ if (METIS_FOUND)
 endif ()
 
 
-option (USE_MUPARSER "muParser" ON)
+option (USE_MUPARSER "muParser" ${USE_DEFAULT})
 if (USE_MUPARSER)
   find_package (muParser)
 endif ()
@@ -585,7 +587,7 @@ if (muParser_FOUND)
 endif ()
 
 
-option (USE_MUMPS "MUMPS" ON)
+option (USE_MUMPS "MUMPS" ${USE_DEFAULT})
 if (USE_MUMPS)
   find_package (MUMPS)
 endif ()
@@ -594,7 +596,7 @@ if (MUMPS_FOUND)
 endif ()
 
 
-option (USE_NAUTY "nauty" ON)
+option (USE_NAUTY "nauty" ${USE_DEFAULT})
 if (USE_NAUTY)
   find_package (NAUTY)
 endif ()
@@ -603,7 +605,7 @@ if (NAUTY_FOUND)
 endif ()
 
 
-option (USE_NETCDF "netcdf" ON)
+option (USE_NETCDF "netcdf" ${USE_DEFAULT})
 if (USE_NETCDF)
   find_package (netCDF NO_MODULE)
 endif ()
@@ -611,7 +613,7 @@ if (netCDF_FOUND)
   add_pkgtest (netcdf LIBS netcdf)
 endif ()
 
-option (USE_NLOPT "nlopt" ON)
+option (USE_NLOPT "nlopt" ${USE_DEFAULT})
 if (USE_NLOPT)
   find_package (NLopt)
 endif ()
@@ -619,7 +621,7 @@ if (NLOPT_FOUND)
   add_pkgtest (nlopt EXT .cxx INCLUDES ${NLOPT_INCLUDE_DIRS} LIBS ${NLOPT_LIBRARIES})
 endif ()
 
-option (USE_OPENCV "opencv" ON)
+option (USE_OPENCV "opencv" ${USE_DEFAULT})
 if (USE_OPENCV)
   find_package (OpenCV COMPONENTS opencv_core opencv_highgui opencv_imgproc opencv_imgcodecs)
 endif ()
@@ -631,7 +633,7 @@ if (OPENCV_CORE_FOUND AND OPENCV_HIGHGUI_FOUND AND OPENCV_IMGPROC_FOUND AND OPEN
 endif ()
 
 
-option (USE_OPENMESH "openmesh" ON)
+option (USE_OPENMESH "openmesh" ${USE_DEFAULT})
 if (USE_OPENMESH)
   find_package (OpenMesh)
 endif ()
@@ -640,7 +642,7 @@ if (OPENMESH_FOUND)
 endif ()
 
 
-option (USE_OPENMP "openmp" ON)
+option (USE_OPENMP "openmp" ${USE_DEFAULT})
 if (USE_OPENMP)
   find_package (OpenMP)
 endif ()
@@ -650,7 +652,7 @@ if (OPENMP_FOUND)
 endif ()
 
 
-option (USE_OPENSSL "openssl" ON)
+option (USE_OPENSSL "openssl" ${USE_DEFAULT})
 if (USE_OPENSSL)
   find_package (OpenSSL)
 endif ()
@@ -659,7 +661,7 @@ if (OPENSSL_FOUND)
 endif ()
 
 
-option (USE_PAGMO "pagmo" ON)
+option (USE_PAGMO "pagmo" ${USE_DEFAULT})
 if (USE_PAGMO)
   find_package (pagmo)
 endif ()
@@ -668,7 +670,7 @@ if (pagmo_FOUND)
 endif ()
 
 
-option (USE_PRIMESIEVE "primesieve" ON)
+option (USE_PRIMESIEVE "primesieve" ${USE_DEFAULT})
 if (USE_PRIMESIEVE)
   find_package (primesieve)
 endif ()
@@ -677,7 +679,7 @@ if (primesieve_FOUND)
 endif ()
 
 
-option (USE_PROJ "proj" ON)
+option (USE_PROJ "proj" ${USE_DEFAULT})
 if (USE_PROJ)
   find_package (LibPROJ)
 endif ()
@@ -686,7 +688,7 @@ if (LibPROJ_FOUND)
 endif ()
 
 
-option (USE_REGEX "regex" ON)
+option (USE_REGEX "regex" ${USE_DEFAULT})
 if (USE_REGEX)
   find_package (Regex)
 endif ()
@@ -695,7 +697,7 @@ if (REGEX_FOUND)
 endif ()
 
 
-option (USE_ZLIB "zlib" ON)
+option (USE_ZLIB "zlib" ${USE_DEFAULT})
 if (USE_ZLIB)
   find_package (ZLIB)
 endif ()
@@ -703,7 +705,7 @@ if (ZLIB_FOUND)
   add_pkgtest (zlib  INCLUDES ${ZLIB_INCLUDE_DIRS} LIBS ${ZLIB_LIBRARIES})
 endif ()
 
-option(USE_LIBZIP "libzip" on)
+option(USE_LIBZIP "libzip" ${USE_DEFAULT})
 if (USE_LIBZIP)
   find_package(LibZip)
 endif ()
@@ -711,7 +713,7 @@ if (LibZip_FOUND)
   add_pkgtest(libzip INCLUDES ${LIBZIP_INCLUDE_DIRS} LIBS ${LIBZIP_LIBRARIES})
 endif()
 
-option (USE_TBB "tbb" ON)
+option (USE_TBB "tbb" ${USE_DEFAULT})
 if (USE_TBB)
   find_package (TBB CONFIG)
 endif ()
@@ -720,7 +722,7 @@ if (TBB_FOUND)
 endif ()
 
 
-option (USE_BOOST "boost" ON)
+option (USE_BOOST "boost" ${USE_DEFAULT})
 if (USE_BOOST)
   find_package (Boost COMPONENTS regex filesystem serialization date_time thread)
   if (TARGET Boost::regex)
@@ -742,7 +744,7 @@ if (READLINE_FOUND)
 endif ()
 
 
-option(USE_PYTHON "python" ON)
+option(USE_PYTHON "python" ${USE_DEFAULT})
 if (USE_PYTHON)
   find_package(PythonLibs)
 endif()
@@ -751,7 +753,7 @@ if (PYTHONLIBS_FOUND)
 endif()
 
 
-option(USE_PNG "png" ON)
+option(USE_PNG "png" ${USE_DEFAULT})
 if (USE_PNG)
   find_package(PNG)
 endif()
@@ -763,7 +765,7 @@ if (PNG_FOUND)
 endif()
 
 
-option (USE_SGPP "sgpp" ON)
+option (USE_SGPP "sgpp" ${USE_DEFAULT})
 if (USE_SGPP)
   find_package (SGpp)
 endif()
@@ -771,7 +773,7 @@ if (SGpp_FOUND)
   add_pkgtest (sgpp EXT .cxx INCLUDES ${SGPP_INCLUDE_DIR} LIBS ${SGPP_LIBRARIES})
 endif()
 
-option (USE_SPECTRA "spectra" ON)
+option (USE_SPECTRA "spectra" ${USE_DEFAULT})
 if (USE_SPECTRA)
   find_package (Spectra)
 endif ()
@@ -800,7 +802,7 @@ if (QT4_FOUND)
 endif ()
 
 
-option (USE_QSCINTILLA "qscintilla" ON)
+option (USE_QSCINTILLA "qscintilla" ${USE_DEFAULT})
 if (USE_QSCINTILLA)
   find_package (QScintilla)
 endif ()
@@ -809,7 +811,7 @@ if (QSCINTILLA_FOUND AND QT4_FOUND)
 endif ()
 
 
-option (USE_QSINT "qsint" ON)
+option (USE_QSINT "qsint" ${USE_DEFAULT})
 if (USE_QSINT)
   find_package (QSint)
 endif ()
@@ -818,7 +820,7 @@ if (QSINT_FOUND AND QT4_FOUND)
 endif ()
 
 
-option (USE_QT5 "qt5" ON)
+option (USE_QT5 "qt5" ${USE_DEFAULT})
 if (USE_QT5)
   find_package (Qt5Widgets NO_MODULE)
 endif ()
@@ -827,7 +829,7 @@ if (Qt5Widgets_FOUND)
 endif ()
 
 
-option (USE_QT6 "qt6" ON)
+option (USE_QT6 "qt6" ${USE_DEFAULT})
 if (USE_QT6)
   find_package (Qt6Widgets NO_MODULE)
 endif ()
@@ -837,7 +839,7 @@ endif ()
 
 
 
-option (USE_QWT "qwt" ON)
+option (USE_QWT "qwt" ${USE_DEFAULT})
 if (USE_QWT)
   find_package (Qwt 6)
 endif ()
@@ -846,7 +848,7 @@ if (QWT_FOUND AND Qt5Widgets_FOUND)
 endif ()
 
 
-option (USE_SDL "sdl" ON)
+option (USE_SDL "sdl" ${USE_DEFAULT})
 if (USE_SDL)
   find_package (SDL)
 endif ()
@@ -855,7 +857,7 @@ if (SDL_FOUND)
 endif ()
 
 
-option (USE_SDL_IMAGE "sdl_image" ON)
+option (USE_SDL_IMAGE "sdl_image" ${USE_DEFAULT})
 if (USE_SDL_IMAGE)
   find_package (SDL_image)
 endif ()
@@ -864,7 +866,7 @@ if (SDL_IMAGE_FOUND)
 endif ()
 
 
-option (USE_SDL_GFX "sdl_gfx" ON)
+option (USE_SDL_GFX "sdl_gfx" ${USE_DEFAULT})
 if (USE_SDL_GFX)
   find_package (SDL_gfx)
 endif ()
@@ -873,7 +875,7 @@ if (SDL_GFX_FOUND)
 endif ()
 
 
-option (USE_SDL_MIXER "sdl_mixer" ON)
+option (USE_SDL_MIXER "sdl_mixer" ${USE_DEFAULT})
 if (USE_SDL_MIXER)
   find_package (SDL_mixer)
 endif ()
@@ -885,7 +887,7 @@ if (SDL_MIXER_FOUND)
 endif ()
 
 
-option (USE_SDL2 "sdl2" ON)
+option (USE_SDL2 "sdl2" ${USE_DEFAULT})
 if (USE_SDL2)
   find_package (SDL2)
 endif ()
@@ -894,7 +896,7 @@ if (SDL2_FOUND)
 endif ()
 
 
-option (USE_SDL2_IMAGE "sdl2_image" ON)
+option (USE_SDL2_IMAGE "sdl2_image" ${USE_DEFAULT})
 if (USE_SDL2_IMAGE)
   find_package (SDL2_image)
 endif ()
@@ -903,7 +905,7 @@ if (SDL2_IMAGE_FOUND)
 endif ()
 
 
-option (USE_SDL2_MIXER "sdl2_mixer" ON)
+option (USE_SDL2_MIXER "sdl2_mixer" ${USE_DEFAULT})
 if (USE_SDL2_MIXER)
   find_package (SDL2_mixer)
 endif ()
@@ -915,7 +917,7 @@ if (SDL2_MIXER_FOUND)
 endif ()
 
 
-option (USE_VORBIS "vorbis" ON)
+option (USE_VORBIS "vorbis" ${USE_DEFAULT})
 if (USE_VORBIS)
   find_package (Vorbis)
 endif ()
@@ -924,7 +926,7 @@ if (Vorbis_FOUND)
 endif ()
 
 
-option (USE_VTK "vtk" ON)
+option (USE_VTK "vtk" ${USE_DEFAULT})
 if (USE_VTK)
   find_package(VTK COMPONENTS vtkChartsCore vtkFiltersSources NO_MODULE)
 endif ()
@@ -932,7 +934,7 @@ if (VTK_FOUND)
   add_pkgtest (vtk EXT .cxx LIBS ${VTK_LIBRARIES})
 endif ()
 
-option (USE_Z3 "z3" ON)
+option (USE_Z3 "z3" ${USE_DEFAULT})
 if (USE_Z3)
   find_package(Z3 NO_MODULE)
 endif ()
