@@ -36,7 +36,7 @@
 
     Thomas Knudsen, 2016-10-30/2017-07-06
 *******************************************************************************/
-#include <windows.h>
+
 #undef STRICT
 #  include <proj.h>
 #  include <proj/io.hpp>

@@ -18,7 +18,7 @@ int main(void)
     * cfg_getint(), this is not a problem as the data types are implicitly
     * cast.
     */
-  int debug = 1;
+  long int debug = 1;
 
   cfg_opt_t opts[] = {
     CFG_SIMPLE_BOOL("verbose", &verbose),

@@ -19,4 +19,8 @@ find_package_handle_standard_args(Cuba
 if (CUBA_FOUND)
   set(CUBA_INCLUDE_DIRS "${CUBA_INCLUDE_DIR}")
   set(CUBA_LIBRARIES "${CUBA_LIBRARY}")
+  find_library(M_LIBRARY NAMES m)
+  if (M_LIBRARY)
+    list (APPEND CUBA_LIBRARIES ${M_LIBRARY})
+  endif ()
 endif ()
