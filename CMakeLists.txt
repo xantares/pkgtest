@@ -178,6 +178,15 @@ if (Ceres_FOUND)
 endif ()
 
 
+option (USE_CERF "cerf" ${USE_DEFAULT})
+if (USE_CERF)
+  find_package (cerf CONFIG)
+endif ()
+if (cerf_FOUND)
+  add_pkgtest (cerf LIBS cerf::cerf)
+endif ()
+
+
 option(USE_CGAL "cgal" ${USE_DEFAULT})
 if (USE_CGAL)
   find_package (CGAL NO_MODULE)
