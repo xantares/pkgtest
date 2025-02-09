@@ -160,6 +160,15 @@ if (BOX2D_FOUND)
 endif ()
 
 
+option (USE_BZIP2 "bzip2" ${USE_DEFAULT})
+if (USE_BZIP2)
+  find_package (BZip2)
+endif ()
+if (BZip2_FOUND)
+  add_pkgtest (bzip2 LIBS BZip2::BZip2)
+endif ()
+
+
 option(USE_CERES "ceres" ${USE_DEFAULT})
 if (USE_CERES)
   find_package (Ceres NO_MODULE)
