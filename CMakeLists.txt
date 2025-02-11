@@ -303,6 +303,15 @@ if (FFTW_FOUND)
 endif ()
 
 
+option (USE_FLINT "flint" ${USE_DEFAULT})
+if (USE_FLINT)
+  find_package (FLINT)
+endif ()
+if (FLINT_FOUND)
+  add_pkgtest (flint INCLUDES ${FLINT_INCLUDE_DIRS} LIBS ${FLINT_LIBRARIES})
+endif ()
+
+
 option (USE_FREEGLUT "freeglut" ${USE_DEFAULT})
 if (USE_FREEGLUT)
   find_package (FREEGLUT)
@@ -796,12 +805,23 @@ if (SGpp_FOUND)
   add_pkgtest (sgpp EXT .cxx INCLUDES ${SGPP_INCLUDE_DIR} LIBS ${SGPP_LIBRARIES})
 endif()
 
+
 option (USE_SPECTRA "spectra" ${USE_DEFAULT})
 if (USE_SPECTRA)
   find_package (Spectra)
 endif ()
 if (Spectra_FOUND)
   add_pkgtest (spectra EXT .cxx INCLUDES ${EIGEN_INCLUDE_DIRS} ${SPECTRA_INCLUDE_DIR})
+endif()
+
+
+option (USE_SYMENGINE "symengine" ${USE_DEFAULT})
+if (USE_SYMENGINE)
+  find_package (SymEngine CONFIG)
+endif ()
+if (SymEngine_FOUND)
+  message(STATUS "Found SymEngine ${SymEngine_DIR}")
+  add_pkgtest (symengine EXT .cxx LIBS symengine gmp)
 endif()
 
 
