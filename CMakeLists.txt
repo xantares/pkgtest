@@ -821,7 +821,7 @@ if (USE_SYMENGINE)
 endif ()
 if (SymEngine_FOUND)
   message(STATUS "Found SymEngine ${SymEngine_DIR}")
-  add_pkgtest (symengine EXT .cxx LIBS symengine gmp)
+  add_pkgtest (symengine EXT .cxx LIBS symengine flint mpfr mpc gmp primesieve)
 endif()
 
 
