@@ -392,6 +392,16 @@ else ()
 endif ()
 
 
+option (USE_HIGHS "highs" ${USE_DEFAULT})
+if (USE_HIGHS)
+  find_package(highs CONFIG)
+endif ()
+if (highs_FOUND)
+  message(STATUS "Found HIGHS ${highs_DIR}")
+  add_pkgtest (highs EXT .cxx LIBS highs::highs)
+endif ()
+
+
 option (USE_HMAT "hmat" ${USE_DEFAULT})
 if (USE_HMAT)
   find_package (HMAT NO_MODULE)
@@ -580,6 +590,15 @@ if (USE_LPSOLVE)
 endif ()
 if (LPSOLVE_FOUND)
   add_pkgtest (lpsolve INCLUDES ${LPSOLVE_INCLUDE_DIRS} LIBS ${LPSOLVE_LIBRARIES})
+endif ()
+
+
+option (USE_MATPLOT "matplot" ${USE_DEFAULT})
+if (USE_MATPLOT)
+  find_package (Matplot++ CONFIG)
+endif ()
+if (Matplot++_FOUND)
+  add_pkgtest (matplot EXT .cxx LIBS Matplot++::matplot)
 endif ()
 
 
