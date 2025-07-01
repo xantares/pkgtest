@@ -205,6 +205,15 @@ if (CONFUSE_FOUND)
 endif ()
 
 
+option (USE_CPPTRACE "cpptrace" ${USE_DEFAULT})
+if (USE_CPPTRACE)
+  find_package (cpptrace)
+endif ()
+if (cpptrace_FOUND)
+  add_pkgtest (cpptrace EXT .cxx LIBS cpptrace::cpptrace)
+endif ()
+
+
 option (USE_CUBA "cuba" ${USE_DEFAULT})
 if (USE_CUBA)
   find_package (Cuba)
