@@ -871,32 +871,12 @@ if (Qhull_FOUND)
 endif()
 
 
-option (USE_QT4 "qt4" OFF)
-if (USE_QT4)
-  find_package (Qt4 REQUIRED QtCore QtGui)
-endif ()
-if (QT4_FOUND)
-  set (QT4_LIBRARIES ${QT_QTGUI_LIBRARY};${QT_QTCORE_LIBRARY})
-  set (QT4_INCLUDE_DIRS ${QT_INCLUDE_DIR};${QT_QTGUI_INCLUDE_DIR};${QT_QTCORE_INCLUDE_DIR})
-  add_pkgtest (qt4 EXT .cxx INCLUDES ${QT4_INCLUDE_DIRS} LIBS ${QT4_LIBRARIES})
-endif ()
-
-
 option (USE_QSCINTILLA "qscintilla" ${USE_DEFAULT})
 if (USE_QSCINTILLA)
   find_package (QScintilla)
 endif ()
 if (QSCINTILLA_FOUND AND QT4_FOUND)
   add_pkgtest (qscintilla EXT .cxx INCLUDES ${QT4_INCLUDE_DIRS};${QSCINTILLA_INCLUDE_DIRS} LIBS ${QT4_LIBRARIES};${QSCINTILLA_LIBRARIES})
-endif ()
-
-
-option (USE_QSINT "qsint" ${USE_DEFAULT})
-if (USE_QSINT)
-  find_package (QSint)
-endif ()
-if (QSINT_FOUND AND QT4_FOUND)
-  add_pkgtest (qsint EXT .cxx INCLUDES ${QT4_INCLUDE_DIRS};${QSINT_INCLUDE_DIRS} LIBS ${QT4_LIBRARIES};${QSINT_LIBRARIES})
 endif ()
 
 
