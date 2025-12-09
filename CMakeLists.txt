@@ -862,6 +862,15 @@ if (ROL_FOUND)
 endif()
 
 
+option (USE_QHULL "qhull" ${USE_DEFAULT})
+if (USE_QHULL)
+  find_package (Qhull)
+endif()
+if (Qhull_FOUND)
+  add_pkgtest (qhull INCLUDES ${QHULL_INCLUDE_DIRS} LIBS ${QHULL_LIBRARIES})
+endif()
+
+
 option (USE_QT4 "qt4" OFF)
 if (USE_QT4)
   find_package (Qt4 REQUIRED QtCore QtGui)
